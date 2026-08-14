@@ -18,6 +18,7 @@
     "test:e2e": "npm run build && playwright test --grep-invert \"@a11y|@security\"",
     "test:a11y": "npm run build && playwright test --grep @a11y",
     "test:security": "npm run build && playwright test --grep @security",
+    "test:perf": "npm run build && lhci autorun --config=lighthouserc.cjs",
     "check:links": "npm run build && node scripts/check-links.mjs",
     "check:links:external": "npm run build && node scripts/check-links.mjs --external",
     "validate": "npm run typecheck && npm run lint && npm run format:check && npm run build"
@@ -37,6 +38,7 @@
     "@astrojs/check": "^0.9.10",
     "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "^10.0.1",
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.62.1",
     "@typescript-eslint/parser": "^8.67.0",
     "eslint": "^10.8.1",

@@ -38,6 +38,22 @@ export default defineConfig([
   },
 
   {
+    // Lighthouse CI loads its config with require(), so that file must stay
+    // CommonJS. Scope the CJS allowances to .cjs only.
+    files: ['**/*.cjs'],
+    languageOptions: {
+      globals: {
+        module: 'readonly',
+        process: 'readonly',
+        require: 'readonly',
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+
+  {
     rules: {
       // Unused code is a correctness signal, not a style preference.
       // Underscore prefix is the explicit opt-out.

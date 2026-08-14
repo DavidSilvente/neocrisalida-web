@@ -10,6 +10,9 @@ node_modules/
 test-results/
 playwright-report/
 
+# lighthouse ci
+.lighthouseci/
+
 # logs
 npm-debug.log*
 yarn-debug.log*
