@@ -7,7 +7,13 @@ import prettier from 'eslint-config-prettier';
 
 export default defineConfig([
   {
-    ignores: ['dist/', '.astro/', 'node_modules/'],
+    ignores: [
+      'dist/',
+      '.astro/',
+      'node_modules/',
+      'test-results/',
+      'playwright-report/',
+    ],
   },
 
   js.configs.recommended,
