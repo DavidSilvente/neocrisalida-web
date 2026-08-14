@@ -16,6 +16,8 @@
     "format:check": "prettier --check .",
     "test:e2e": "npm run build && playwright test --grep-invert @a11y",
     "test:a11y": "npm run build && playwright test --grep @a11y",
+    "check:links": "npm run build && node scripts/check-links.mjs",
+    "check:links:external": "npm run build && node scripts/check-links.mjs --external",
     "validate": "npm run typecheck && npm run lint && npm run format:check && npm run build"
   },
   "dependencies": {
@@ -38,6 +40,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^3.1.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
+    "linkinator": "^8.0.3",
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^6.0.3",

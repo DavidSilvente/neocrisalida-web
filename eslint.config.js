@@ -22,6 +22,18 @@ export default defineConfig([
   astro.configs['flat/jsx-a11y-recommended'],
 
   {
+    // Node scripts run outside the browser: declare only the globals they use.
+    files: ['scripts/**/*.mjs'],
+    languageOptions: {
+      globals: {
+        URL: 'readonly',
+        console: 'readonly',
+        process: 'readonly',
+      },
+    },
+  },
+
+  {
     rules: {
       // Unused code is a correctness signal, not a style preference.
       // Underscore prefix is the explicit opt-out.
