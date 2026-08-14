@@ -2,15 +2,25 @@
 import { defineConfig, envField } from 'astro/config';
 
 import node from '@astrojs/node';
+import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
+
+// Explicit deployment target. Vercel sets DEPLOY_TARGET through the
+// buildCommand in vercel.json, so selection is version-controlled and never
+// inferred from ambient environment variables. Everything else — local dev,
+// GitHub CI, and every quality gate — keeps using the Node standalone runtime.
+const adapter =
+  process.env.DEPLOY_TARGET === 'vercel'
+    ? vercel({ staticHeaders: true })
+    : node({ mode: 'standalone', staticHeaders: true });
 
 // https://astro.build/config
 export default defineConfig({
   // Output stays static: pages are prerendered by default and only routes that
   // explicitly `export const prerender = false` are rendered on demand.
-  // staticHeaders lets the standalone server send Astro-generated headers
+  // staticHeaders lets the deployed server send Astro-generated headers
   // (such as CSP) for prerendered pages too, not just on-demand routes.
-  adapter: node({ mode: 'standalone', staticHeaders: true }),
+  adapter,
 
   // Infrastructure probes only. These are NOT domain configuration: they exist
   // to prove that client-public and server-secret variables stay separated.
