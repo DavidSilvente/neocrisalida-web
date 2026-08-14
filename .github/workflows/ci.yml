@@ -73,6 +73,11 @@ jobs:
   supply-chain:
     name: Supply chain
     runs-on: ubuntu-latest
+    # Gitleaks lists the PR's commits through the API, which needs read access
+    # to pull requests. Granted per job so the rest stays contents-read only.
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
       - uses: actions/checkout@v7
         with:

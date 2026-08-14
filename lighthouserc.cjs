@@ -23,6 +23,15 @@ module.exports = {
       // Reuse the Chromium already pinned by Playwright instead of requiring a
       // second browser install. executablePath() is Playwright's public API.
       chromePath: chromium.executablePath(),
+      settings: {
+        // CI runners cannot use Chrome's sandbox, and /dev/shm is too small
+        // there. Playwright handles this itself, but Lighthouse launches Chrome
+        // through chrome-launcher, so it needs the flags explicitly. Kept off
+        // locally so the sandbox stays enabled on developer machines.
+        chromeFlags: process.env.CI
+          ? ['--no-sandbox', '--disable-dev-shm-usage']
+          : [],
+      },
     },
 
     assert: {
