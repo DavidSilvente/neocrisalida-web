@@ -1,0 +1,43 @@
+---
+import { actions, isInputError } from 'astro:actions';
+import '../styles/global.css';
+
+// Only this route opts out of prerendering; the rest of the site stays static.
+export const prerender = false;
+
+const result = Astro.getActionResult(actions.probe);
+const inputError =
+  result?.error && isInputError(result.error) ? result.error : undefined;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Action Probe</title>
+  </head>
+  <body class="p-8">
+    <h1 class="text-3xl font-bold">Action Probe</h1>
+
+    <form method="POST" action={actions.probe}>
+      <label for="value">Value</label>
+      <input id="value" name="value" type="text" />
+      <button type="submit">Submit</button>
+    </form>
+
+    {
+      result?.data && (
+        <p data-testid="success">Received: {result.data.received}</p>
+      )
+    }
+
+    {
+      inputError && (
+        <p data-testid="input-error">
+          Validation failed: {inputError.fields.value?.join(', ')}
+        </p>
+      )
+    }
+  </body>
+</html>

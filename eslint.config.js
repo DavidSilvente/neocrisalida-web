@@ -26,9 +26,13 @@ export default defineConfig([
     files: ['scripts/**/*.mjs'],
     languageOptions: {
       globals: {
+        AbortSignal: 'readonly',
         URL: 'readonly',
+        clearTimeout: 'readonly',
         console: 'readonly',
+        fetch: 'readonly',
         process: 'readonly',
+        setTimeout: 'readonly',
       },
     },
   },

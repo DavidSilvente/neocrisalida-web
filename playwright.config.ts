@@ -18,20 +18,18 @@ export default defineConfig({
     },
   ],
 
-  // Serves the built dist/ output via `astro preview`, never `astro dev`.
-  // reuseExistingServer is false on purpose: reusing a running dev server
-  // would silently test development output instead of the production build.
+  // Runs the real Node server bundle produced by the build, never `astro dev`.
+  // `astro preview` only serves static output, so it cannot execute the
+  // on-demand routes and actions this suite needs to cover.
+  // reuseExistingServer is false on purpose: reusing an already running server
+  // would silently test stale output instead of the current production build.
   webServer: {
-    command: `npm run preview -- --host ${HOST} --port ${PORT}`,
+    command: 'npm run start',
     url: BASE_URL,
     reuseExistingServer: false,
     env: {
-      // Astro 7 auto-detects agentic environments and daemonizes `astro preview`
-      // into a background process. The CLI would then exit immediately and
-      // Playwright would report "Process from config.webServer exited early",
-      // leaving an orphaned server behind. This opts back into a foreground
-      // process that Playwright owns and can terminate.
-      ASTRO_PREVIEW_BACKGROUND: '0',
+      HOST,
+      PORT: String(PORT),
     },
   },
 });
