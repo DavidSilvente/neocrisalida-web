@@ -13,6 +13,8 @@ export default defineConfig([
       'node_modules/',
       'test-results/',
       'playwright-report/',
+      '.lighthouseci/',
+      '.vercel/',
     ],
   },
 
@@ -22,8 +24,9 @@ export default defineConfig([
   astro.configs['flat/jsx-a11y-recommended'],
 
   {
-    // Node scripts run outside the browser: declare only the globals they use.
-    files: ['scripts/**/*.mjs'],
+    // Node scripts and build config run outside the browser: declare only the
+    // globals they use.
+    files: ['scripts/**/*.mjs', '*.config.mjs'],
     languageOptions: {
       globals: {
         AbortSignal: 'readonly',

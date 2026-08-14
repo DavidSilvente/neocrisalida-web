@@ -42,6 +42,31 @@ All commands are run from the root of the project, from a terminal:
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
 
+## Runtimes and deployment
+
+The project builds with two adapters, selected by the `DEPLOY_TARGET`
+environment variable:
+
+| Context                         | `DEPLOY_TARGET` | Adapter                      |
+| :------------------------------ | :-------------- | :--------------------------- |
+| Local dev, all gates, GitHub CI | unset           | `@astrojs/node` (standalone) |
+| Vercel                          | `vercel`        | `@astrojs/vercel`            |
+
+Vercel sets it through `buildCommand` in `vercel.json`, so the choice is
+version-controlled rather than inferred from the environment. Every quality gate
+(`test:e2e`, `test:a11y`, `test:security`, `check:links`, `test:perf`) runs
+against the Node standalone server and never depends on Vercel being reachable.
+
+Rendering is unchanged by the target: pages are prerendered by default and only
+routes that opt out with `export const prerender = false` render on demand.
+
+### Deployments
+
+- Production branch: `master`
+- Every branch and pull request gets a **Preview Deployment** through Vercel's
+  native Git integration — no GitHub Action deploys anything.
+- No custom domain is configured yet; previews use generated `*.vercel.app` URLs.
+
 ## Supply chain policy
 
 CI runs three dependency audits with deliberately different severities.
