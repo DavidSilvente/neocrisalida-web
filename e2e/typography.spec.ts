@@ -55,15 +55,18 @@ test('high density gets the fine cut back @type', async ({ browser }) => {
     expect(roles.length, 'the display roles must render').toBeGreaterThan(0);
 
     const notFine = roles.filter(
-      ({ opsz }) => !Number.isFinite(opsz) || opsz < 18,
+      ({ opsz }) => !Number.isFinite(opsz) || opsz < 16,
     );
     expect(
       notFine,
-      "at 2dppx the fine cut must apply: every Bodoni role above 'opsz' 18",
+      "at 2dppx the fine cut must apply: no Bodoni role below 'opsz' 16",
     ).toEqual([]);
 
-    const tooFine = roles.filter(({ opsz }) => opsz > 48);
-    expect(tooFine, "the fine cut stops at 'opsz' 48").toEqual([]);
+    // Held well under the print-matched value. A device reported the hairlines
+    // missing at 48 until a pinch-zoom forced a re-raster: Android's rasteriser
+    // drops strokes an iPhone keeps at the same reported density.
+    const tooFine = roles.filter(({ opsz }) => opsz > 28);
+    expect(tooFine, "the fine cut stops at 'opsz' 28").toEqual([]);
   } finally {
     await context.close();
   }

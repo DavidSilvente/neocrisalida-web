@@ -858,31 +858,37 @@ figure {
 /* Bodoni's fine cut, restored where the screen can actually render it.
    The hairlines vanish when they fall below a device pixel, so the deciding
    factor is pixel density — not the operating system. At 2dppx and above the
-   thin strokes survive at a much higher optical size, which is the face the
-   brief wants; below that the sturdier default above stays in place. No user
-   agent sniffing, no JavaScript: the media query asks about the actual cause. */
+   thin strokes survive at a higher optical size, which is the face the brief
+   wants; below that the sturdier default above stays in place. No user agent
+   sniffing, no JavaScript: the media query asks about the actual cause.
+
+   The fine cut is held at 28 rather than 48 because Android's rasteriser drops
+   strokes an iPhone keeps at the same reported density: a device reported the
+   hairlines missing until a pinch-zoom forced a re-raster, which is the tell
+   that the stroke sits under the raster threshold rather than under a pixel.
+   Between 48 and 28 the face barely changes; the hairline thickness does. */
 @media (min-resolution: 2dppx) {
   .display-xl {
-    font-variation-settings: 'opsz' 48;
-    font-weight: 500;
+    font-variation-settings: 'opsz' 28;
+    font-weight: 520;
   }
 
   .display-l {
-    font-variation-settings: 'opsz' 44;
-    font-weight: 500;
+    font-variation-settings: 'opsz' 26;
+    font-weight: 520;
   }
 
   .said {
-    font-variation-settings: 'opsz' 32;
+    font-variation-settings: 'opsz' 22;
   }
 
   .field h3 {
-    font-variation-settings: 'opsz' 24;
-    font-weight: 500;
+    font-variation-settings: 'opsz' 18;
+    font-weight: 520;
   }
 
   .wordmark {
-    font-variation-settings: 'opsz' 18;
-    font-weight: 500;
+    font-variation-settings: 'opsz' 16;
+    font-weight: 520;
   }
 }
