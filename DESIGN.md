@@ -24,30 +24,30 @@ typography:
   display-xl:
     fontFamily: 'Bodoni Moda, ui-serif, Georgia, serif'
     fontSize: 'clamp(2.75rem, 11vw, 6rem)'
-    fontWeight: 500
+    fontWeight: 600
     lineHeight: 0.98
     letterSpacing: '-0.035em'
-    fontVariation: "'opsz' 72"
+    fontVariation: "'opsz' 14"
   display-l:
     fontFamily: 'Bodoni Moda, ui-serif, Georgia, serif'
     fontSize: 'clamp(2.15rem, 7vw, 3.75rem)'
-    fontWeight: 500
+    fontWeight: 600
     lineHeight: 1.02
     letterSpacing: '-0.028em'
-    fontVariation: "'opsz' 48"
+    fontVariation: "'opsz' 14"
   title:
     fontFamily: 'Bodoni Moda, ui-serif, Georgia, serif'
     fontSize: 'clamp(1.25rem, 2.6vw, 1.6rem)'
-    fontWeight: 500
+    fontWeight: 600
     lineHeight: 1.04
     letterSpacing: '-0.02em'
-    fontVariation: "'opsz' 24"
+    fontVariation: "'opsz' 12"
   said:
     fontFamily: 'Bodoni Moda, ui-serif, Georgia, serif'
     fontSize: 'clamp(1.35rem, 3.4vw, 2rem)'
     fontWeight: 500
     lineHeight: 1.24
-    fontVariation: "'opsz' 32"
+    fontVariation: "'opsz' 16"
   field-line:
     fontFamily: 'Karla, ui-sans-serif, system-ui, sans-serif'
     fontSize: '1rem'
@@ -277,9 +277,14 @@ about difficult subjects never sounds performed.
 
 ### Named Rules
 
-**The Optical Size Rule.** Every Bodoni role sets `font-variation-settings` with
-an `opsz` matched to its rendered size (72 / 48 / 32 / 28 / 24 / 18). A Bodoni
-heading without a matched `opsz` is a defect, not a shortcut.
+**The Hairline Survival Rule.** Every Bodoni role sets `font-variation-settings`
+with a deliberately LOW `opsz` (12–16), and presence comes from weight instead.
+Matching `opsz` to the rendered size is the print-typography habit and it is
+wrong here: at high optical sizes Bodoni's hairlines — the crossbar of an `A`,
+the bar of an `e` — fall below one device pixel and disappear entirely at DPR 1,
+which is where many Android screens rasterise. A Bodoni role with `opsz` above
+16, or relying on weight 500 at display scale, is a defect. Verify type captures
+at **device pixel ratio 1**, never only at 2: DPR 2 hides this completely.
 
 **The Travelling Measure Rule.** The reading measure widens with the journey:
 30ch, 34ch, 42ch, 42ch, 48ch, 52ch, 56ch across the seven stages. A new stage
@@ -488,7 +493,8 @@ transitions on the action and the masthead link are unaffected and remain.
   has lightened.
 - **Do** set content in the shell's second column, measured from the gutter, at
   the measure its position in the journey calls for (30ch → 56ch).
-- **Do** match `opsz` to the rendered size on every Bodoni role.
+- **Do** keep `opsz` low (12–16) on every Bodoni role and let weight carry
+  presence, and check new type at device pixel ratio 1.
 - **Do** put per-instance geometry in the stylesheet keyed on a `data-*`
   attribute. The harness CSP is `default-src 'self'` with no `style-src-attr`
   allowance, so an inline `style` attribute will not apply. This is a hard
