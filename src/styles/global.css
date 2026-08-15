@@ -1,1 +1,868 @@
 @import 'tailwindcss';
+
+/* ==========================================================================
+   NeoCrisálida — visual world
+   The page is drawn by one continuous line: the brand's own butterfly
+   contour. It is wound into a chrysalis at the top and resolves into the
+   complete hand-and-butterfly at the close. Every token below belongs to
+   that journey — the ground travels from contained to open, and the line
+   travels with it.
+   ========================================================================== */
+
+/* --- Faces -------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/fonts/bodoni-moda-roman-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/fonts/bodoni-moda-roman-latinext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: italic;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/fonts/bodoni-moda-italic-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: italic;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/fonts/bodoni-moda-italic-latinext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/karla-roman-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/karla-roman-latinext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Karla';
+  font-style: italic;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/karla-italic-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+/* --- World tokens ------------------------------------------------------- */
+
+@theme {
+  --font-display: 'Bodoni Moda', ui-serif, Georgia, serif;
+  --font-body: 'Karla', ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* The journey's grounds, contained → open. */
+  --nc-ground-1: #16092b;
+  --nc-ground-2: #22103f;
+  --nc-ground-3: #301a58;
+  --nc-ground-4: #2b3768;
+  --nc-ground-5: #2f5578;
+  --nc-ground-6: #3f6c8c;
+  --nc-ground-7: #f7f3ee;
+
+  /* Brand ink, taken from the published material. */
+  --nc-violet: #7b3fa0;
+  --nc-blue: #2e6d96;
+  --nc-fuchsia: #b0166f;
+  --nc-fuchsia-lifted: #f06bb2;
+
+  /* Ink on the contained half of the journey. */
+  --nc-ink: #f0eaf8;
+  --nc-ink-dim: #c6b8e2;
+  --nc-line: #b79ce8;
+  --nc-line-2: #7fc0e4;
+
+  --nc-stroke: 1.5px;
+
+  /* The spine's gutter. The line lives here at every width. */
+  --nc-gutter: 3.5rem;
+  --nc-gutter-center: 1.75rem;
+  --nc-figure-w: 13rem;
+
+  --nc-shell: 78rem;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --nc-gutter: 7.5rem;
+    --nc-gutter-center: 3.75rem;
+    --nc-figure-w: 22rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  :root {
+    --nc-gutter: 10rem;
+    --nc-gutter-center: 5rem;
+    --nc-figure-w: 28rem;
+  }
+}
+
+/* --- Base --------------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--nc-ground-1);
+  color: var(--nc-ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@media (min-width: 48rem) {
+  body {
+    font-size: 1.125rem;
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  text-wrap: balance;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* --- Browser surfaces --------------------------------------------------- */
+
+::selection {
+  background: var(--nc-fuchsia);
+  color: #fff;
+}
+
+:root {
+  caret-color: var(--nc-fuchsia-lifted);
+  scrollbar-color: var(--nc-line) var(--nc-ground-1);
+  scrollbar-width: thin;
+}
+
+:focus-visible {
+  outline: 2px solid var(--nc-fuchsia-lifted);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: color-mix(in oklab, currentColor 45%, transparent);
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+}
+
+/* --- The journey -------------------------------------------------------- */
+
+.stage {
+  position: relative;
+  background: var(--stage-ground);
+  padding-block: var(--stage-pad, clamp(5.5rem, 14vh, 9rem));
+  isolation: isolate;
+  overflow-x: clip;
+}
+
+/* Each stage bleeds into the next so the ground reads as one travelling
+   environment rather than seven stacked bands. */
+.stage::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: clamp(6rem, 18vh, 14rem);
+  background: linear-gradient(to bottom, var(--stage-from), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stage > * {
+  position: relative;
+  z-index: 1;
+}
+
+.stage-1 {
+  --stage-ground: var(--nc-ground-1);
+  --stage-from: var(--nc-ground-1);
+  --stage-pad: clamp(4rem, 9vh, 6rem);
+}
+.stage-2 {
+  --stage-ground: var(--nc-ground-2);
+  --stage-from: var(--nc-ground-1);
+  --stage-pad: clamp(4.5rem, 10vh, 6.5rem);
+}
+.stage-3 {
+  --stage-ground: var(--nc-ground-3);
+  --stage-from: var(--nc-ground-2);
+  --stage-pad: clamp(5.5rem, 13vh, 8rem);
+}
+.stage-4 {
+  --stage-ground: var(--nc-ground-4);
+  --stage-from: var(--nc-ground-3);
+  --stage-pad: clamp(6.5rem, 15vh, 9.5rem);
+}
+/* The ground turns from violet to blue here, so the ink lifts with it to hold
+   4.5:1 for body text and 3:1 for the line. */
+.stage-5 {
+  --stage-ground: var(--nc-ground-5);
+  --stage-from: var(--nc-ground-4);
+  --stage-pad: clamp(7.5rem, 17vh, 11rem);
+  --nc-ink-dim: #d6cbee;
+}
+.stage-6 {
+  --stage-ground: var(--nc-ground-6);
+  --stage-from: var(--nc-ground-5);
+  --stage-pad: clamp(8.5rem, 19vh, 13rem);
+  --nc-ink-dim: #eee7fb;
+  --nc-line: #ded2f8;
+  --nc-line-2: #d3ecfa;
+}
+
+/* Emergence. The only stage where the world turns to light, and the only
+   one where the line is drawn in the true brand colours. */
+.stage-7 {
+  --stage-ground: var(--nc-ground-7);
+  --stage-from: var(--nc-ground-6);
+  --stage-pad: clamp(9.5rem, 22vh, 15rem);
+  --nc-ink: #1d0f3c;
+  --nc-ink-dim: #55456f;
+  --nc-line: var(--nc-violet);
+  --nc-line-2: var(--nc-blue);
+  color: var(--nc-ink);
+}
+
+.stage-7::before {
+  height: clamp(10rem, 30vh, 22rem);
+}
+
+/* The shell. Content is measured from the spine, never centred by default. */
+.shell {
+  max-width: var(--nc-shell);
+  margin-inline: auto;
+  padding-inline: 1.25rem clamp(1.25rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: var(--nc-gutter) minmax(0, 1fr);
+}
+
+.shell > * {
+  grid-column: 2;
+}
+
+/* The measure travels with the journey: tight and contained at the top,
+   open at the end. */
+.measure {
+  max-width: 30ch;
+}
+.stage-2 .measure {
+  max-width: 34ch;
+}
+.stage-3 .measure,
+.stage-4 .measure {
+  max-width: 42ch;
+}
+.stage-5 .measure {
+  max-width: 48ch;
+}
+.stage-6 .measure {
+  max-width: 52ch;
+}
+.stage-7 .measure {
+  max-width: 56ch;
+}
+
+/* The copy's own column travels outward from the spine as the page opens: the
+   layout widens, not only the ground. */
+@media (min-width: 48rem) {
+  .stage-3 .shell > *,
+  .stage-4 .shell > * {
+    margin-left: clamp(0rem, 3vw, 3rem);
+  }
+  .stage-5 .shell > * {
+    margin-left: clamp(0rem, 6vw, 6rem);
+  }
+  .stage-6 .shell > * {
+    margin-left: clamp(0rem, 9vw, 9rem);
+  }
+  .stage-7 .shell > * {
+    margin-left: clamp(0rem, 12vw, 12rem);
+  }
+  .stage .figure-flow {
+    margin-left: calc(
+      var(--nc-gutter-center) - (var(--fig-w) * var(--spine-x))
+    );
+  }
+}
+
+/* --- The line ----------------------------------------------------------- */
+
+.spine {
+  position: absolute;
+  inset-block: 0;
+  left: 50%;
+  translate: -50% 0;
+  width: 100%;
+  max-width: var(--nc-shell);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.spine-run {
+  position: absolute;
+  inset-block: 0;
+  left: calc(1.25rem + var(--nc-gutter-center));
+  width: 2px;
+  translate: -1px 0;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Narrow figures ride in the gutter, beside the copy. */
+.spine-figure {
+  position: absolute;
+  top: var(--fig-top, 0);
+  left: calc(
+    1.25rem + var(--nc-gutter-center) - (var(--fig-w) * var(--spine-x))
+  );
+  width: var(--fig-w);
+  height: auto;
+  overflow: visible;
+}
+
+/* Wide figures leave the gutter and take the page. They sit in the flow, as
+   the stage's closing image, so the stroke never crosses running text. */
+.figure-flow {
+  grid-column: 1 / -1;
+  position: relative;
+  width: var(--fig-w);
+  max-width: none;
+  height: auto;
+  overflow: visible;
+  margin-top: clamp(1rem, 3vw, 2rem);
+  margin-left: calc(var(--nc-gutter-center) - (var(--fig-w) * var(--spine-x)));
+}
+
+/* Per-figure geometry. `--spine-x` is where the figure's own spine axis falls
+   as a fraction of its viewBox width. These live here, not on a style
+   attribute, because the harness CSP allows no inline style attributes. */
+[data-figure='crisalida'] {
+  --spine-x: 0.5;
+  --fig-w: 8rem;
+  --fig-top: 3.5rem;
+}
+[data-figure='desprendimiento'] {
+  --spine-x: 0.353;
+  --fig-w: 8rem;
+  --fig-top: 3rem;
+}
+[data-figure='ala'] {
+  --spine-x: 0.2308;
+  --fig-w: 9rem;
+  --fig-top: 3rem;
+}
+[data-figure='antenas'] {
+  --spine-x: 0.5;
+  --fig-w: 7rem;
+  --fig-top: 3rem;
+}
+[data-figure='simetria'] {
+  --spine-x: 0.0417;
+  --fig-w: min(100%, 24rem);
+}
+[data-figure='apertura'] {
+  --spine-x: 0.0385;
+  --fig-w: min(100%, 24rem);
+}
+[data-figure='mano'] {
+  --spine-x: 0.0351;
+  --fig-w: min(100%, 24rem);
+}
+
+@media (min-width: 48rem) {
+  [data-figure='crisalida'] {
+    --fig-w: 12rem;
+    --fig-top: 4.5rem;
+  }
+  [data-figure='desprendimiento'] {
+    --fig-w: 11rem;
+  }
+  [data-figure='ala'] {
+    --fig-w: 13rem;
+  }
+  [data-figure='antenas'] {
+    --fig-w: 9rem;
+  }
+  [data-figure='simetria'],
+  [data-figure='apertura'],
+  [data-figure='mano'] {
+    --fig-w: min(100%, 46rem);
+  }
+}
+
+@media (min-width: 80rem) {
+  [data-figure='crisalida'] {
+    --fig-w: 14rem;
+  }
+  [data-figure='ala'] {
+    --fig-w: 15rem;
+  }
+  [data-figure='simetria'],
+  [data-figure='apertura'],
+  [data-figure='mano'] {
+    --fig-w: min(100%, 58rem);
+  }
+}
+
+.journey path {
+  fill: none;
+  stroke: var(--nc-line);
+  stroke-width: var(--nc-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.journey .ink-blue {
+  stroke: var(--nc-line-2);
+}
+
+.journey .spark {
+  fill: var(--nc-line);
+  stroke: none;
+}
+
+/* The line is drawn by default. Motion only reveals it; it never creates it. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .journey path {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: nc-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 45%;
+    }
+
+    .journey .spark {
+      opacity: 0;
+      animation: nc-spark linear both;
+      animation-timeline: view();
+      animation-range: entry 40% cover 50%;
+    }
+
+    .spine-run path {
+      animation-range: entry 0% cover 90%;
+    }
+  }
+}
+
+@keyframes nc-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nc-spark {
+  to {
+    opacity: 1;
+  }
+}
+
+/* --- Type ---------------------------------------------------------------- */
+
+.display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 11vw, 6rem);
+  font-variation-settings: 'opsz' 72;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+.display-l {
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 7vw, 3.75rem);
+  font-variation-settings: 'opsz' 48;
+  font-weight: 500;
+  letter-spacing: -0.028em;
+  line-height: 1.02;
+}
+
+.lede {
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  line-height: 1.5;
+  color: var(--nc-ink);
+}
+
+.dim {
+  color: var(--nc-ink-dim);
+}
+
+.said {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-variation-settings: 'opsz' 32;
+}
+
+/* --- Situations --------------------------------------------------------- */
+
+/* Deliberately unequal fields, not a card grid. The widths follow the wing
+   the line draws behind them, and the composition holds from six to ten. */
+/* Situations are a list, not a card grid. */
+.fields {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 5vw, 2.5rem);
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  max-width: 64rem;
+}
+
+.field {
+  padding-top: 1rem;
+  border-top: var(--nc-stroke) solid
+    color-mix(in oklab, var(--nc-line) 60%, transparent);
+}
+
+/* Controlled irregularity, not a card grid: three widths and two indents that
+   repeat every third item, so the rhythm holds from six items to ten. */
+@media (min-width: 48rem) {
+  .fields {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: clamp(1.5rem, 4vw, 3rem);
+    row-gap: clamp(2.75rem, 6vw, 4.25rem);
+  }
+
+  .field:nth-child(3n + 1) {
+    grid-column: 1 / span 5;
+  }
+
+  .field:nth-child(3n + 2) {
+    grid-column: 7 / span 4;
+    margin-top: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .field:nth-child(3n + 3) {
+    grid-column: 2 / span 6;
+  }
+}
+
+.field h3 {
+  font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+  font-variation-settings: 'opsz' 24;
+  margin-bottom: 0.4rem;
+}
+
+.field p {
+  color: var(--nc-ink-dim);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* --- Carmen ------------------------------------------------------------- */
+
+.portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  width: min(100%, 22rem);
+  border: var(--nc-stroke) solid
+    color-mix(in oklab, var(--nc-line) 60%, transparent);
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      color-mix(in oklab, var(--nc-line) 9%, transparent) 0 2px,
+      transparent 2px 11px
+    ),
+    color-mix(in oklab, var(--nc-ground-1) 55%, transparent);
+  display: grid;
+  place-content: center;
+  gap: 0.5rem;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.pending {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--nc-ink-dim);
+}
+
+/* --- Action ------------------------------------------------------------- */
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.95rem 1.9rem;
+  border-radius: 999px;
+  border: 0;
+  background: var(--nc-fuchsia);
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 380ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 380ms cubic-bezier(0.16, 1, 0.3, 1),
+    translate 380ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.action:hover {
+  background: color-mix(in oklab, var(--nc-fuchsia) 88%, #fff);
+  translate: 0 -2px;
+  box-shadow: 0 10px 24px -10px
+    color-mix(in oklab, var(--nc-fuchsia) 75%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: none;
+  }
+  .action:hover {
+    translate: none;
+  }
+}
+
+.action-note {
+  display: block;
+  margin-top: 0.9rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--nc-ink-dim);
+  max-width: 34ch;
+}
+
+/* --- Nav ---------------------------------------------------------------- */
+
+.masthead {
+  position: relative;
+  z-index: 2;
+  max-width: var(--nc-shell);
+  margin-inline: auto;
+  padding: 1.5rem 1.25rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem clamp(1rem, 3vw, 2.25rem);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-variation-settings: 'opsz' 18;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.wordmark em {
+  font-style: normal;
+  color: var(--nc-line);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem clamp(0.9rem, 2.5vw, 1.75rem);
+  font-size: 0.9375rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--nc-ink-dim);
+  transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav a:hover {
+  color: var(--nc-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav a {
+    transition: none;
+  }
+}
+
+/* --- Close -------------------------------------------------------------- */
+
+.colophon {
+  font-size: 0.9375rem;
+  color: var(--nc-ink-dim);
+}
+
+.colophon-stage {
+  padding-block: 0 clamp(3rem, 8vh, 5rem);
+}
+
+.colophon-stage::before {
+  content: none;
+}
+
+/* --- Rhythm -------------------------------------------------------------
+   One spacing scale for the whole page: more space above a heading than
+   below it, tight inside a group, generous between groups. */
+
+.stage-lede {
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.stage-said {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.35rem, 3.4vw, 2rem);
+  line-height: 1.24;
+  color: var(--nc-line);
+  max-width: 26ch;
+}
+
+.stage-7 .stage-said {
+  color: var(--nc-violet);
+}
+
+.stage-action {
+  margin-top: clamp(2.25rem, 5vw, 3.25rem);
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10;
+  background: var(--nc-fuchsia);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip:focus-visible {
+  left: 0.75rem;
+  top: 0.75rem;
+}
+
+figure {
+  margin: 0;
+}
+
+/* The unresolved action. It stays focusable — `aria-disabled`, not `disabled`
+   — so the note explaining why it goes nowhere is reachable by keyboard. It is
+   drawn, not filled, so it never reads as the live action. */
+.action[aria-disabled='true'] {
+  cursor: not-allowed;
+  background: transparent;
+  color: var(--nc-ink);
+  border: var(--nc-stroke) dashed
+    color-mix(in oklab, var(--nc-line) 75%, transparent);
+}
+
+.action[aria-disabled='true']:hover {
+  translate: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* Carmen: text and portrait, asymmetric, never a centred profile card. */
+.carmen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: clamp(2rem, 6vw, 4.5rem);
+}
+
+.carmen-text {
+  flex: 1 1 26rem;
+  max-width: 42ch;
+}
+
+.figure-note {
+  display: block;
+  margin-top: 1rem;
+  max-width: 34ch;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--nc-ink-dim);
+}
+
+.portrait figcaption {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  max-width: 26ch;
+}

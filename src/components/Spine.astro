@@ -1,0 +1,28 @@
+---
+/**
+ * The spine: the straight run of the one continuous line, plus the gutter
+ * figure this stage blooms into. The run is a non-uniformly scaled vertical
+ * path with a non-scaling stroke, so it holds an exact 1.5px line at any
+ * stage height without a single hard-coded measurement.
+ */
+import type { Figure } from '../journey';
+import JourneyFigure from './JourneyFigure.astro';
+
+interface Props {
+  figure?: Figure;
+}
+
+const { figure } = Astro.props;
+---
+
+<div class="spine" aria-hidden="true">
+  <svg
+    class="journey spine-run"
+    viewBox="0 0 2 100"
+    preserveAspectRatio="none"
+    fill="none"
+  >
+    <path d="M 1 0 V 100" pathLength="1"></path>
+  </svg>
+  {figure && <JourneyFigure figure={figure} />}
+</div>

@@ -1,0 +1,311 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-15T00:00:00Z",
+  "title": "Design System: NeoCrisálida",
+  "extensions": {
+    "colorMeta": {
+      "ground-1": {
+        "role": "neutral",
+        "displayName": "Contained Ground",
+        "canonical": "#16092b",
+        "tonalRamp": ["#0a0414", "#16092b", "#241045", "#341a5e", "#472a78", "#6b4c9c", "#9c86c4", "#ded4ee"]
+      },
+      "ground-4": {
+        "role": "neutral",
+        "displayName": "Turning Ground",
+        "canonical": "#2b3768",
+        "tonalRamp": ["#111629", "#1c2444", "#2b3768", "#3a4a8a", "#4c5ea8", "#7183c4", "#a3afdb", "#dde2f2"]
+      },
+      "ground-6": {
+        "role": "neutral",
+        "displayName": "Opening Ground",
+        "canonical": "#3f6c8c",
+        "tonalRamp": ["#15242f", "#20394a", "#2e5169", "#3f6c8c", "#5488ac", "#7ba7c6", "#a9c8dd", "#dceaf3"]
+      },
+      "ground-7": {
+        "role": "neutral",
+        "displayName": "Daylight Ground",
+        "canonical": "#f7f3ee",
+        "tonalRamp": ["#2a2620", "#3f392f", "#5c5548", "#807768", "#a89e8e", "#c9c1b3", "#e5dfd5", "#f7f3ee"]
+      },
+      "violet": {
+        "role": "secondary",
+        "displayName": "Brand Violet",
+        "canonical": "#7b3fa0",
+        "tonalRamp": ["#22102c", "#361848", "#4c2266", "#632f84", "#7b3fa0", "#9a63b8", "#bd94d2", "#e5d5ee"]
+      },
+      "blue": {
+        "role": "secondary",
+        "displayName": "Brand Blue",
+        "canonical": "#2e6d96",
+        "tonalRamp": ["#0e2331", "#163849", "#1f4e66", "#2e6d96", "#4189b5", "#6ba7cb", "#9ec8e0", "#d9ebf5"]
+      },
+      "fuchsia": {
+        "role": "primary",
+        "displayName": "Live Fuchsia",
+        "canonical": "#b0166f",
+        "tonalRamp": ["#2d0520", "#4a0a35", "#6c0f4b", "#8e1360", "#b0166f", "#d13a90", "#e781b8", "#f7cde3"]
+      },
+      "fuchsia-lifted": {
+        "role": "primary",
+        "displayName": "Lifted Fuchsia",
+        "canonical": "#f06bb2",
+        "tonalRamp": ["#3a0f27", "#5c193d", "#801f55", "#a5306f", "#c9478f", "#f06bb2", "#f8a3ce", "#fdd9ea"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#f0eaf8",
+        "tonalRamp": ["#241d2f", "#372d47", "#4e4162", "#6b5b81", "#8f80a3", "#b6aac6", "#d7cee6", "#f0eaf8"]
+      },
+      "ink-dim": {
+        "role": "neutral",
+        "displayName": "Dimmed Ink",
+        "canonical": "#c6b8e2",
+        "tonalRamp": ["#1e1830", "#2f2549", "#443767", "#5d4c86", "#7c6aa5", "#9f8fc4", "#c6b8e2", "#e8e1f4"]
+      },
+      "line": {
+        "role": "tertiary",
+        "displayName": "The Line",
+        "canonical": "#b79ce8",
+        "tonalRamp": ["#1c1330", "#2c1e4b", "#402d69", "#583f8c", "#7358ab", "#9478ca", "#b79ce8", "#e0d3f6"]
+      },
+      "line-2": {
+        "role": "tertiary",
+        "displayName": "The Line, Blue",
+        "canonical": "#7fc0e4",
+        "tonalRamp": ["#0f2532", "#173a4d", "#20536c", "#2b6f8f", "#3d92b4", "#5cadd0", "#7fc0e4", "#cfe8f5"]
+      }
+    },
+    "typographyMeta": {
+      "display-xl": {
+        "displayName": "Display XL",
+        "purpose": "The page's two loudest moments only: the opening statement and the closing question."
+      },
+      "display-l": {
+        "displayName": "Display L",
+        "purpose": "Every stage heading between the opening and the close."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Situation names inside the irregular field."
+      },
+      "said": {
+        "displayName": "Said",
+        "purpose": "Bodoni italic pull-quote closing a stage. Drawn in the line's colour, capped at 26ch."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "The paragraph directly under a heading."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text. Steps to 1.125rem at 48rem."
+      },
+      "note": {
+        "displayName": "Note",
+        "purpose": "Captions, figure notes, the action's explanatory note. Capped at 34ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "The only uppercase, wide-tracked type in the system. Reserved for the Pendiente placeholder marker."
+      }
+    },
+    "shadows": [
+      {
+        "name": "action-lift",
+        "value": "0 10px 24px -10px color-mix(in oklab, #b0166f 75%, transparent)",
+        "purpose": "The only shadow in the system. Hover state of the live action button, tinted with the button's own colour."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-open",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The system's only easing curve, on every transition."
+      },
+      {
+        "name": "duration-action",
+        "value": "380ms",
+        "purpose": "Action button background, shadow, and translate."
+      },
+      {
+        "name": "duration-nav",
+        "value": "240ms",
+        "purpose": "Navigation link colour shift."
+      },
+      {
+        "name": "draw-range",
+        "value": "animation-timeline: view(); animation-range: entry 5% cover 45%",
+        "purpose": "Scroll-driven draw of every journey path, from stroke-dashoffset 1 to 0. Gated behind @supports and prefers-reduced-motion: no-preference."
+      },
+      {
+        "name": "draw-range-spine",
+        "value": "animation-timeline: view(); animation-range: entry 0% cover 90%",
+        "purpose": "The straight run draws across almost the whole stage rather than the figure's shorter window."
+      },
+      {
+        "name": "spark-range",
+        "value": "animation-timeline: view(); animation-range: entry 40% cover 50%",
+        "purpose": "Four-point sparks fade in after their figure has begun drawing."
+      }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "48rem" },
+      { "name": "xl", "value": "80rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Live Action",
+      "kind": "button",
+      "refersTo": "action",
+      "description": "The only filled, saturated element in the system. Used only where the visitor can act.",
+      "html": "<a class=\"ds-action\" href=\"#hablamos\">¿Hablamos?</a>",
+      "css": ".ds-action { display: inline-flex; align-items: center; gap: 0.75rem; font-family: Karla, ui-sans-serif, system-ui, sans-serif; font-size: 1.0625rem; font-weight: 600; letter-spacing: 0.01em; padding: 0.95rem 1.9rem; border-radius: 999px; border: 0; background: #b0166f; color: #fff; text-decoration: none; cursor: pointer; transition: background 380ms cubic-bezier(0.16,1,0.3,1), box-shadow 380ms cubic-bezier(0.16,1,0.3,1), translate 380ms cubic-bezier(0.16,1,0.3,1); } .ds-action:hover { background: color-mix(in oklab, #b0166f 88%, #fff); translate: 0 -2px; box-shadow: 0 10px 24px -10px color-mix(in oklab, #b0166f 75%, transparent); } .ds-action:focus-visible { outline: 2px solid #f06bb2; outline-offset: 3px; border-radius: 999px; }"
+    },
+    {
+      "name": "Pending Action",
+      "kind": "button",
+      "refersTo": "action-pending",
+      "description": "An unresolved action. aria-disabled rather than disabled, so it stays focusable and its explanation stays reachable. Drawn, not filled, so it never reads as live. The dashed border is a provisional detail, not an established pattern.",
+      "html": "<button class=\"ds-action-pending\" type=\"button\" aria-disabled=\"true\" aria-describedby=\"ds-pending-note\">¿Hablamos?</button><span class=\"ds-action-note\" id=\"ds-pending-note\"><span class=\"ds-pending\">Pendiente</span> El destino de este botón es una decisión de producto todavía sin resolver.</span>",
+      "css": ".ds-action-pending { display: inline-flex; align-items: center; gap: 0.75rem; font-family: Karla, ui-sans-serif, system-ui, sans-serif; font-size: 1.0625rem; font-weight: 600; letter-spacing: 0.01em; padding: 0.95rem 1.9rem; border-radius: 999px; background: transparent; color: #f0eaf8; cursor: not-allowed; border: 1.5px dashed color-mix(in oklab, #b79ce8 75%, transparent); } .ds-action-pending:hover { translate: none; box-shadow: none; background: transparent; } .ds-action-pending:focus-visible { outline: 2px solid #f06bb2; outline-offset: 3px; } .ds-action-note { display: block; margin-top: 0.9rem; font-family: Karla, ui-sans-serif, system-ui, sans-serif; font-size: 0.8125rem; line-height: 1.5; color: #c6b8e2; max-width: 34ch; } .ds-pending { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #c6b8e2; }"
+    },
+    {
+      "name": "Situation Field",
+      "kind": "card",
+      "refersTo": "field",
+      "description": "A list item in the irregular 12-column field. No container: a 1.5px rule in the line's own weight, and space.",
+      "html": "<li class=\"ds-field\"><h3>Duelo y pérdidas</h3><p>Cuando alguien o algo ya no está, y el mundo sigue como si nada.</p></li>",
+      "css": ".ds-field { list-style: none; padding-top: 1rem; border-top: 1.5px solid color-mix(in oklab, #b79ce8 60%, transparent); } .ds-field h3 { margin: 0 0 0.4rem; font-family: 'Bodoni Moda', ui-serif, Georgia, serif; font-weight: 500; font-size: clamp(1.25rem, 2.6vw, 1.6rem); font-variation-settings: 'opsz' 24; letter-spacing: -0.02em; line-height: 1.04; color: #f0eaf8; } .ds-field p { margin: 0; font-family: Karla, ui-sans-serif, system-ui, sans-serif; color: #c6b8e2; font-size: 1rem; line-height: 1.6; }"
+    },
+    {
+      "name": "Media Placeholder",
+      "kind": "card",
+      "refersTo": "portrait",
+      "description": "Honest scaffolding for media that does not exist yet: hatched frame, Pendiente label, and a caption naming what will replace it.",
+      "html": "<figure class=\"ds-portrait\"><span class=\"ds-pending\">Pendiente</span><figcaption>Fotografía original de Carmen, en alta resolución. Marcador provisional.</figcaption></figure>",
+      "css": ".ds-portrait { margin: 0; position: relative; aspect-ratio: 4 / 5; width: min(100%, 22rem); border: 1.5px solid color-mix(in oklab, #b79ce8 60%, transparent); background: repeating-linear-gradient(-45deg, color-mix(in oklab, #b79ce8 9%, transparent) 0 2px, transparent 2px 11px), color-mix(in oklab, #16092b 55%, transparent); display: grid; place-content: center; gap: 0.5rem; text-align: center; padding: 1.5rem; } .ds-portrait figcaption { font-family: Karla, ui-sans-serif, system-ui, sans-serif; font-size: 0.8125rem; line-height: 1.5; max-width: 26ch; color: #c6b8e2; } .ds-portrait .ds-pending { font-family: Karla, ui-sans-serif, system-ui, sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #c6b8e2; }"
+    },
+    {
+      "name": "Masthead",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Flat masthead: wordmark left, links right, baseline-aligned, wrapping rather than collapsing. No bar, no border, not sticky.",
+      "html": "<header class=\"ds-masthead\"><a class=\"ds-wordmark\" href=\"#inicio\">Neo<em>Crisálida</em></a><nav class=\"ds-nav\" aria-label=\"Secciones\"><a href=\"#acompanarte\">Cómo puedo acompañarte</a><a href=\"#carmen\">Sobre Carmen</a><a href=\"#hablamos\">¿Hablamos?</a></nav></header>",
+      "css": ".ds-masthead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.75rem clamp(1rem, 3vw, 2.25rem); max-width: 78rem; margin-inline: auto; padding: 1.5rem 1.25rem 0; } .ds-wordmark { font-family: 'Bodoni Moda', ui-serif, Georgia, serif; font-size: 1.35rem; font-variation-settings: 'opsz' 18; font-weight: 500; letter-spacing: -0.015em; text-decoration: none; margin-right: auto; color: #f0eaf8; } .ds-wordmark em { font-style: normal; color: #b79ce8; } .ds-nav { display: flex; flex-wrap: wrap; gap: 0.5rem clamp(0.9rem, 2.5vw, 1.75rem); font-family: Karla, ui-sans-serif, system-ui, sans-serif; font-size: 0.9375rem; } .ds-nav a { text-decoration: none; color: #c6b8e2; transition: color 240ms cubic-bezier(0.16,1,0.3,1); } .ds-nav a:hover { color: #f0eaf8; } .ds-nav a:focus-visible { outline: 2px solid #f06bb2; outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Journey Line",
+      "kind": "custom",
+      "refersTo": "spine",
+      "description": "The system's signature: the straight run of the one continuous line plus the figure a stage blooms into. Non-uniform scaling with a non-scaling stroke holds an exact 1.5px at any height; pathLength=\"1\" lets one dash rule draw every path.",
+      "html": "<div class=\"ds-spine\" aria-hidden=\"true\"><svg class=\"ds-journey ds-spine-run\" viewBox=\"0 0 2 100\" preserveAspectRatio=\"none\" fill=\"none\"><path d=\"M 1 0 V 100\" pathLength=\"1\"></path></svg><svg class=\"ds-journey ds-spine-figure\" viewBox=\"0 0 120 330\" width=\"120\" height=\"330\" fill=\"none\"><path pathLength=\"1\" d=\"M 60 0 V 40 C 92 74, 98 142, 60 214 C 22 142, 28 74, 60 40 C 72 52, 82 62, 86 74 C 62 80, 38 84, 30 92 C 48 102, 74 106, 90 116 C 68 128, 40 132, 28 142 C 46 152, 72 156, 84 168 C 66 178, 44 182, 34 190 C 46 200, 56 206, 60 214 V 330\"></path><path class=\"ds-spark\" pathLength=\"1\" d=\"M 104 56 Q 105.08 60.92 110 62 Q 105.08 63.08 104 68 Q 102.92 63.08 98 62 Q 102.92 60.92 104 56 Z\"></path></svg></div>",
+      "css": ".ds-spine { position: relative; height: 22rem; pointer-events: none; } .ds-spine-run { position: absolute; inset-block: 0; left: 3.75rem; width: 2px; translate: -1px 0; height: 100%; overflow: visible; } .ds-spine-figure { position: absolute; top: 2rem; left: calc(3.75rem - (8rem * 0.5)); width: 8rem; height: auto; overflow: visible; } .ds-journey path { fill: none; stroke: #b79ce8; stroke-width: 1.5px; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; } .ds-journey .ds-spark { fill: #b79ce8; stroke: none; } @supports (animation-timeline: view()) { @media (prefers-reduced-motion: no-preference) { .ds-journey path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: ds-draw linear both; animation-timeline: view(); animation-range: entry 5% cover 45%; } } } @keyframes ds-draw { to { stroke-dashoffset: 0; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Trace That Completes",
+    "overview": "The whole page is one drawing. A single 1.5px line enters at the top of the document wound into a chrysalis, runs down the left gutter through every section, blooms sideways into a lobe, then a wing, then a head with antennae, and finally leaves the margin altogether to finish as the open hand with the butterfly lifting off it. Nothing on the page is decorated with a butterfly; the butterfly is the page's construction. This is why the world can be dark, quiet and almost imageless and still not feel empty — the line is doing the work that photography and illustration usually do.\n\nThe ground travels with the line. Seven stage grounds move from a nearly black violet (#16092b) through indigo and slate blue to a warm off-white (#f7f3ee) at the close, and each stage bleeds into the next with a top gradient so the sequence reads as one continuous environment rather than seven stacked bands. Everything else travels with it too: the reading measure widens from 30ch to 56ch, the vertical padding grows stage by stage, and the content column drifts outward from the spine. The visitor's experience of \"opening up\" is built from layout, not from copy telling them it happens.\n\nThe register is editorial and restrained: a high-contrast Bodoni Moda for display against a plain Karla for text, no cards, no rounded panels, no shadows at rest, no filled shapes anywhere except one accent button and a handful of four-point sparks. The one saturated colour, fuchsia (#b0166f), is the colour Carmen actually wears in the published material, and it appears only where the visitor is meant to act. The build carries zero JavaScript; every piece of motion is CSS scroll-driven animation.",
+    "keyCharacteristics": [
+      "One continuous stroke, one weight (1.5px), non-scaling at every size",
+      "A seven-step ground that travels dark→light across the document",
+      "Type set from a spine in the left gutter, never centred",
+      "Flat at rest: no shadows, no cards, no radius except one pill",
+      "Fuchsia as the single live colour, used only for action",
+      "Zero JavaScript; motion is animation-timeline: view() only"
+    ],
+    "rules": [
+      {
+        "name": "The One Live Colour Rule",
+        "body": "Fuchsia is the only saturated fill in the system. If an element is fuchsia, the visitor can act on it. Never use it for emphasis, decoration, section headers, or hover states on non-interactive elements.",
+        "section": "colors"
+      },
+      {
+        "name": "The Travelling Ground Rule",
+        "body": "Backgrounds are a sequence, not a set. A new section takes the next ground in the journey and bleeds from the previous one; it never reuses an earlier ground or introduces a colour outside the seven.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink Lifts With The Ground Rule",
+        "body": "Whenever a stage's ground lightens, its ink-dim and line values are re-declared on that stage to hold 4.5:1 for body text and 3:1 for the stroke. Contrast is re-stated per stage, never inherited on faith.",
+        "section": "colors"
+      },
+      {
+        "name": "The Optical Size Rule",
+        "body": "Every Bodoni role sets font-variation-settings with an opsz matched to its rendered size (72 / 48 / 32 / 28 / 24 / 18). A Bodoni heading without a matched opsz is a defect, not a shortcut.",
+        "section": "typography"
+      },
+      {
+        "name": "The Travelling Measure Rule",
+        "body": "The reading measure widens with the journey: 30ch, 34ch, 42ch, 42ch, 48ch, 52ch, 56ch across the seven stages. A new stage takes the measure of its position; it does not pick a comfortable default.",
+        "section": "typography"
+      },
+      {
+        "name": "The Level Voice Rule",
+        "body": "Karla is never tracked, uppercased, or weighted for emphasis, with exactly one exception: the Pendiente placeholder label. No kickers, no eyebrows, no small-caps section tags.",
+        "section": "typography"
+      },
+      {
+        "name": "The Spine Rule",
+        "body": "Content is measured from the left gutter, never centred. A new section inherits the shell grid and places itself in column two; nothing is margin-inline: auto except the shell and masthead themselves.",
+        "section": "layout"
+      },
+      {
+        "name": "The Outward Drift Rule",
+        "body": "A stage later in the journey sits further from the spine and reads wider than the one before it. Opening is expressed as geometry before it is expressed as words.",
+        "section": "layout"
+      },
+      {
+        "name": "The Irregular Field Rule",
+        "body": "Repeating content is laid out as an irregular field on a 12-column grid, never as equal cards in a row. If a set of items looks like a card grid, it is wrong.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat-At-Rest Rule",
+        "body": "Nothing casts a shadow at rest. A shadow is a response to pointer state on an interactive element, tinted with that element's own colour — never a neutral black drop used to separate a surface from its ground.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Stroke Rule",
+        "body": "Every mark in the world is the same 1.5px non-scaling stroke with round caps and joins. No second weight, no filled illustration, no outline/solid pairing. New figures extend the existing line; they never start a second one.",
+        "section": "shapes"
+      },
+      {
+        "name": "The No Card Rule",
+        "body": "Content is separated by space and by rules drawn in the line's own weight, never by a filled or rounded container. The only radius in the system is the action pill.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Spine Entry Rule",
+        "body": "A new figure declares its --spine-x and enters on the spine axis. A figure that floats free of the axis breaks the fiction that the page is one drawing.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do extend the existing line. New figures are new moments of the same continuous stroke, declare a --spine-x, and enter on the spine axis.",
+      "Do keep every mark at 1.5px with vector-effect: non-scaling-stroke, round caps and round joins.",
+      "Do take the next ground in the journey for a new section and bleed it from the one before, and re-declare that stage's ink-dim and line if the ground has lightened.",
+      "Do set content in the shell's second column, measured from the gutter, at the measure its position in the journey calls for (30ch → 56ch).",
+      "Do match opsz to the rendered size on every Bodoni role.",
+      "Do put per-instance geometry in the stylesheet keyed on a data-* attribute. The harness CSP is default-src 'self' with no style-src-attr allowance, so an inline style attribute will not apply. This is a hard constraint on every future surface.",
+      "Do self-host fonts as woff2 subsets in public/fonts/ with font-display: swap, and preload only the roman Latin subsets. font-src is 'self'; a Google Fonts link will be blocked.",
+      "Do express motion as CSS scroll-driven animation inside @supports and @media (prefers-reduced-motion: no-preference), with the resting state complete and legible without it.",
+      "Do mark unresolved content with the uppercase Pendiente label plus a caption saying what is missing and what will replace it.",
+      "Do keep an unresolved action aria-disabled and focusable, with its explanation wired through aria-describedby."
+    ],
+    "donts": [
+      "Don't add JavaScript for visual behaviour. The surface ships with zero JS and the drawing does not depend on any.",
+      "Don't use an inline style attribute anywhere. It is silently dropped by the CSP.",
+      "Don't introduce a second stroke weight, a filled illustration, or an outline-plus-solid pairing. The only filled marks are the four-point sparks and the one fuchsia action.",
+      "Don't build a card grid, a rounded panel, or an equal three-across row of services. Repeating content is an irregular 12-column field.",
+      "Don't add a radius. The pill on the action button and the 2px focus ring are the only two in the system.",
+      "Don't add a resting shadow. The only shadow is the action's hover lift, tinted with its own colour.",
+      "Don't use fuchsia for anything the visitor cannot act on, and don't introduce a second accent colour.",
+      "Don't centre content or set a heading centred. Everything is measured from the spine.",
+      "Don't add a kicker, eyebrow, or uppercase section tag above a heading. The only uppercase, wide-tracked type in the system is the Pendiente marker.",
+      "Don't reach for a gradient hero, a stock photograph, or a decorative butterfly graphic. The line is the imagery."
+    ]
+  }
+}

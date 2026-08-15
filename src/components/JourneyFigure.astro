@@ -1,0 +1,256 @@
+---
+/**
+ * One moment of the single continuous line that draws the page.
+ *
+ * Every figure enters on the spine's own axis — the same axis the straight run
+ * line follows down the whole document — so the stroke reads as one
+ * uninterrupted drawing from the chrysalis at the top to the finished
+ * hand-and-butterfly at the close. Figures bloom off that axis; they never
+ * start a second line.
+ *
+ * The wings are built once and mirrored by negating x and reversing each
+ * cubic's control points, so the symmetry is exact rather than eyeballed.
+ *
+ * `pathLength="1"` normalises every path so a single dash rule draws them all.
+ * Geometry that varies per figure (`--spine-x`, width, offset) lives in the
+ * stylesheet keyed on `data-figure`, because the harness CSP allows no inline
+ * style attributes.
+ */
+import type { Figure } from '../journey';
+
+interface Props {
+  figure: Figure;
+  /** `gutter` rides beside the copy; `flow` sits after it, in the grid. */
+  placement?: 'gutter' | 'flow';
+}
+
+const { figure, placement = 'gutter' } = Astro.props;
+
+/** A four-point spark, the mark the published brand material already uses. */
+const spark = (x: number, y: number, r: number) =>
+  `M ${x} ${y - r} Q ${x + r * 0.18} ${y - r * 0.18} ${x + r} ${y} ` +
+  `Q ${x + r * 0.18} ${y + r * 0.18} ${x} ${y + r} ` +
+  `Q ${x - r * 0.18} ${y + r * 0.18} ${x - r} ${y} ` +
+  `Q ${x - r * 0.18} ${y - r * 0.18} ${x} ${y - r} Z`;
+
+/**
+ * The complete insect, drawn from the body's top point without lifting: right
+ * forewing, right hindwing, abdomen tip, mirrored hindwing and forewing, both
+ * antennae out and back, then the body downward.
+ */
+const wings = (open: boolean) =>
+  open
+    ? 'C 76 -110, 176 -112, 190 -34 ' +
+      'C 200 22, 128 56, 14 60 ' +
+      'C 88 78, 124 124, 106 170 ' +
+      'C 90 208, 26 204, 4 150 ' +
+      'C 2 164, -2 164, -4 150 ' +
+      'C -26 204, -90 208, -106 170 ' +
+      'C -124 124, -88 78, -14 60 ' +
+      'C -128 56, -200 22, -190 -34 ' +
+      'C -176 -112, -76 -110, 0 10 '
+    : 'C 70 -70, 158 -76, 176 -8 ' +
+      'C 186 40, 120 66, 14 66 ' +
+      'C 84 82, 116 124, 100 166 ' +
+      'C 86 200, 26 198, 4 150 ' +
+      'C 2 164, -2 164, -4 150 ' +
+      'C -26 198, -86 200, -100 166 ' +
+      'C -116 124, -84 82, -14 66 ' +
+      'C -120 66, -186 40, -176 -8 ' +
+      'C -158 -76, -70 -70, 0 10 ';
+
+const headAndBody =
+  'C -10 -8, -26 -24, -40 -34 ' +
+  'C -26 -22, -10 -6, 0 10 ' +
+  'C 10 -6, 26 -22, 40 -34 ' +
+  'C 26 -24, 10 -8, 0 10 ' +
+  'C 4 52, 4 104, 0 156';
+
+type Shape = { d: string; cls?: string };
+type Spec = { viewBox: string; shapes: Shape[]; sparks: Shape[] };
+
+const specs: Record<Figure, Spec> = {
+  /* Contained. The line traces the pod's own silhouette, then wraps back and
+     forth across it like the silk that holds it shut, and leaves at the tip. */
+  crisalida: {
+    viewBox: '0 0 120 330',
+    shapes: [
+      {
+        d:
+          'M 60 0 V 40 ' +
+          'C 92 74, 98 142, 60 214 ' +
+          'C 22 142, 28 74, 60 40 ' +
+          'C 72 52, 82 62, 86 74 ' +
+          'C 62 80, 38 84, 30 92 ' +
+          'C 48 102, 74 106, 90 116 ' +
+          'C 68 128, 40 132, 28 142 ' +
+          'C 46 152, 72 156, 84 168 ' +
+          'C 66 178, 44 182, 34 190 ' +
+          'C 46 200, 56 206, 60 214 ' +
+          'V 330',
+      },
+    ],
+    sparks: [{ d: spark(104, 62, 6) }],
+  },
+
+  /* Movement. One lobe leaves the axis and returns: the first piece of wing
+     geometry, still unreadable as a wing. */
+  desprendimiento: {
+    viewBox: '0 0 170 270',
+    shapes: [
+      {
+        d:
+          'M 60 0 V 70 ' +
+          'C 108 62, 150 96, 146 140 ' +
+          'C 143 174, 108 186, 82 164 ' +
+          'C 68 152, 60 122, 60 96 ' +
+          'V 270',
+      },
+    ],
+    sparks: [],
+  },
+
+  /* Opening. A whole wing — forewing and hindwing — hangs off the axis. Half
+     a butterfly, and legible as exactly that. */
+  ala: {
+    viewBox: '0 0 260 460',
+    shapes: [
+      {
+        d:
+          'M 60 0 V 118 ' +
+          'C 130 38, 218 32, 236 100 ' +
+          'C 246 148, 180 174, 74 174 ' +
+          'C 144 190, 176 232, 160 274 ' +
+          'C 146 308, 86 306, 64 258 ' +
+          'C 62 290, 60 320, 60 350 ' +
+          'V 460',
+      },
+    ],
+    sparks: [{ d: spark(248, 66, 7) }],
+  },
+
+  /* The head. Both antennae are drawn out and back without lifting, and the
+     axis carries on beneath them. */
+  antenas: {
+    viewBox: '0 0 120 270',
+    shapes: [
+      {
+        d:
+          'M 60 0 V 60 ' +
+          'C 48 42, 32 24, 20 12 ' +
+          'C 32 26, 48 44, 60 62 ' +
+          'C 72 44, 88 26, 100 12 ' +
+          'C 88 24, 72 42, 60 60 ' +
+          'V 270',
+      },
+    ],
+    sparks: [],
+  },
+
+  /* Emergence. The line leaves the margin it has lived in all page, travels
+     into the open, and builds its own axis — and the second wing completes the
+     symmetry. The section about accompanying someone else is where the figure
+     stops being half. */
+  simetria: {
+    viewBox: '-280 -190 480 410',
+    shapes: [
+      {
+        d:
+          'M -260 -190 V -110 ' +
+          'C -258 -50, -180 0, -80 8 ' +
+          'C -50 11, -24 12, 0 10 ' +
+          wings(false) +
+          headAndBody,
+      },
+    ],
+    sparks: [{ d: spark(196, -58, 7) }],
+  },
+
+  /* Air. Not a third butterfly: the same contour with nothing holding it in
+     at all, one uncontained sweep that leaves the frame on both ends. */
+  apertura: {
+    viewBox: '-300 -240 560 460',
+    shapes: [
+      {
+        d:
+          'M -280 -240 V -120 ' +
+          'C -278 -40, -180 8, -60 14 ' +
+          'C 30 18, 110 -34, 160 -120 ' +
+          'C 196 -182, 150 -220, 104 -186 ' +
+          'C 44 -142, 26 -46, 44 34 ' +
+          'C 62 112, 130 166, 220 190',
+      },
+    ],
+    sparks: [{ d: spark(236, -156, 8) }],
+  },
+
+  /* The close. The drawing finishes as the thing it always was: the open hand
+     and the butterfly of the published brand material, each in its own colour.
+     This is a stand-in for the original brand vector, which does not exist yet. */
+  mano: {
+    viewBox: '-260 -200 570 410',
+    shapes: [
+      {
+        cls: 'ink-blue',
+        d:
+          'M -240 -200 V -70 ' +
+          'C -238 20, -160 82, -60 104 ' +
+          'C -30 111, -14 118, 10 116 ' +
+          'C 60 168, 130 186, 190 176 ' +
+          'C 236 168, 264 142, 268 116 ' +
+          'C 272 96, 256 88, 244 100 ' +
+          'C 230 112, 208 126, 188 132 ' +
+          'C 224 110, 256 84, 268 62 ' +
+          'C 276 46, 260 34, 248 48 ' +
+          'C 234 64, 208 100, 190 120 ' +
+          'C 220 88, 246 50, 250 26 ' +
+          'C 253 10, 236 2, 226 18 ' +
+          'C 214 36, 198 80, 186 110 ' +
+          'C 200 76, 210 36, 206 14 ' +
+          'C 203 -3, 184 -4, 178 14 ' +
+          'C 170 38, 166 86, 164 114 ' +
+          'C 138 128, 76 132, 40 106 ' +
+          'C 24 94, 8 102, 10 116',
+      },
+      {
+        /* The same insect, at half scale, lifting off the fingertips. */
+        d:
+          'M 200 -145 ' +
+          'C 235 -185, 279 -188, 288 -154 ' +
+          'C 293 -130, 260 -117, 207 -117 ' +
+          'C 242 -109, 258 -88, 250 -67 ' +
+          'C 243 -50, 213 -51, 202 -75 ' +
+          'C 201 -68, 199 -68, 198 -75 ' +
+          'C 187 -51, 157 -50, 150 -67 ' +
+          'C 142 -88, 158 -109, 193 -117 ' +
+          'C 140 -117, 107 -130, 112 -154 ' +
+          'C 121 -188, 165 -185, 200 -145 ' +
+          'C 195 -154, 187 -162, 180 -167 ' +
+          'C 187 -161, 195 -153, 200 -145 ' +
+          'C 205 -153, 213 -161, 220 -167 ' +
+          'C 213 -162, 205 -154, 200 -145 ' +
+          'C 202 -124, 202 -98, 200 -72',
+      },
+    ],
+    sparks: [{ d: spark(310, -176, 8) }],
+  },
+};
+
+const spec = specs[figure];
+const [, , vbW, vbH] = spec.viewBox.split(' ').map(Number);
+const cls =
+  placement === 'flow' ? 'journey figure-flow' : 'journey spine-figure';
+---
+
+<svg
+  class={cls}
+  data-figure={figure}
+  viewBox={spec.viewBox}
+  width={vbW}
+  height={vbH}
+  fill="none"
+  aria-hidden="true"
+>
+  {spec.shapes.map((s) => <path d={s.d} class={s.cls} pathLength="1" />)}
+  {spec.sparks.map((s) => <path d={s.d} class="spark" pathLength="1" />)}
+</svg>

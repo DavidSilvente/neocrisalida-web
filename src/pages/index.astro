@@ -1,15 +1,249 @@
 ---
 import '../styles/global.css';
+import Spine from '../components/Spine.astro';
+import JourneyFigure from '../components/JourneyFigure.astro';
+
+const situations = [
+  {
+    name: 'Duelo y pérdidas',
+    line: 'Cuando alguien o algo ya no está, y el mundo sigue como si nada.',
+  },
+  {
+    name: 'Crisis vitales y existenciales',
+    line: 'Cuando lo que te sostenía deja de sostener y no sabes qué viene después.',
+  },
+  {
+    name: 'Estrés y preocupación',
+    line: 'Cuando la cabeza no para, ni siquiera cuando por fin te sientas.',
+  },
+  {
+    name: 'Cansancio emocional y burnout',
+    line: 'Cuando cumples con todo y aun así el día termina sin nada dentro.',
+  },
+  {
+    name: 'Bloqueo y desmotivación',
+    line: 'Cuando sabes lo que quieres hacer y aun así no consigues empezar.',
+  },
+  {
+    name: 'Soledad y sensación de vacío',
+    line: 'Cuando hay gente alrededor y la sensación de soledad no se va.',
+  },
+];
 ---
 
-<html lang="en">
+<!doctype html>
+<html lang="es">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>Web Harness</title>
+    <title>NeoCrisálida — Acompañamiento psicológico y emocional online</title>
+    <meta
+      name="description"
+      content="NeoCrisálida es un espacio de escucha para las conversaciones que no solemos tener. Acompañamiento psicológico y emocional online con Carmen: duelo, crisis vitales, burnout, soledad y orientación a familiares."
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/bodoni-moda-roman-latin.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/karla-roman-latin.woff2"
+      crossorigin
+    />
   </head>
-  <body class="p-8">
-    <h1 class="text-3xl font-bold">Web Harness</h1>
+
+  <body>
+    <!--
+      THESIS: One continuous line — NeoCrisálida's own butterfly contour — draws
+      the whole page, wound into a chrysalis at the top and finished as the
+      hand-and-butterfly at the close. It refuses the category's gradient hero,
+      equal service cards and decorative butterflies.
+      OWN-WORLD: Violet-indigo ground travelling to warm white, brand blue and
+      violet as ink, fuchsia (the colour Carmen actually wears) as the only live
+      accent. Bodoni Moda display, Karla text, 1.5px single-weight stroke, no
+      cards, no filled shapes.
+      STORY: Someone recognises their situation, meets a real person, sees the
+      accompaniment is online, and finds how to begin.
+      FIRST VIEWPORT: Deepest ground, spine in the left gutter coiling into the
+      chrysalis; "Lo que callamos también necesita un lugar." at display scale;
+      the action sits directly under the lede.
+      FORM: The trace that completes; candidate 1 of the grounded list; surface
+      seed 84175a7d.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with
+      the finish review, the verdict, and DESIGN.md
+    -->
+
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+
+    <header class="masthead">
+      <a class="wordmark" href="#inicio">Neo<em>Crisálida</em></a>
+      <nav class="nav" aria-label="Secciones">
+        <a href="#acompanarte">Cómo puedo acompañarte</a>
+        <a href="#carmen">Sobre Carmen</a>
+        <a href="#familiares">Familiares</a>
+        <a href="#hablamos">¿Hablamos?</a>
+      </nav>
+    </header>
+
+    <main id="contenido">
+      <section class="stage stage-1" id="inicio">
+        <Spine figure="crisalida" />
+        <div class="shell">
+          <h1 class="display-xl measure">
+            Lo que callamos también necesita un lugar.
+          </h1>
+          <p class="lede measure stage-lede">
+            NeoCrisálida es un espacio de escucha para las conversaciones que no
+            solemos tener. Acompañamiento psicológico y emocional, online.
+          </p>
+          <p class="stage-action">
+            <a class="action" href="#hablamos">¿Hablamos?</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="stage stage-2">
+        <Spine figure="desprendimiento" />
+        <div class="shell">
+          <h2 class="display-l measure">
+            Quizás llevas tiempo intentando estar bien.
+          </h2>
+          <p class="lede measure stage-lede">
+            Has leído, has hablado con gente de confianza, has intentado
+            distraerte o simplemente seguir, que no es poco. Pero hay algo que
+            sigue ahí.
+          </p>
+          <p class="said measure stage-said">
+            Aquí encontrarás un refugio en el que poder hablar y soltar sin
+            juicio.
+          </p>
+        </div>
+      </section>
+
+      <section class="stage stage-3" id="acompanarte">
+        <Spine figure="ala" />
+        <div class="shell">
+          <h2 class="display-l measure">Cómo puedo acompañarte</h2>
+          <p class="lede measure stage-lede">
+            Un espacio de escucha, comprensión y acompañamiento adaptado a ti.
+          </p>
+          <ul class="fields">
+            {
+              situations.map((s) => (
+                <li class="field">
+                  <h3>{s.name}</h3>
+                  <p>{s.line}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+
+      <section class="stage stage-4" id="carmen">
+        <Spine figure="antenas" />
+        <div class="shell">
+          <div class="carmen">
+            <div class="carmen-text">
+              <h2 class="display-l">Hola, soy Carmen.</h2>
+              <p class="lede stage-lede">
+                Psicóloga, maestra de PT y musicoterapeuta.
+              </p>
+              <p class="stage-lede dim">
+                Este proyecto no nació de mis títulos. Nació porque me interesan
+                las historias que muchas veces guardamos para nosotros. Y porque
+                sé lo que es guardar tanto y no poder hablarlo.
+              </p>
+            </div>
+            <figure class="portrait">
+              <span class="pending">Pendiente</span>
+              <figcaption class="dim">
+                Fotografía original de Carmen, en alta resolución. Marcador
+                provisional: no se usan capturas de Instagram ni banco de
+                imágenes.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="stage stage-5" id="familiares">
+        <Spine />
+        <div class="shell">
+          <h2 class="display-l measure">Si estás acompañando a alguien</h2>
+          <p class="lede measure stage-lede">
+            Si tienes a alguien cercano que está sufriendo y no sabes cómo
+            ayudarle, también puedo acompañarte.
+          </p>
+          <p class="said measure stage-said">
+            Te ayudo a comprender, sostener y cuidar de ti mientras acompañas.
+          </p>
+          <p class="measure stage-lede dim">
+            Cuida de ti para poder cuidar a los demás.
+          </p>
+          <JourneyFigure figure="simetria" placement="flow" />
+        </div>
+      </section>
+
+      <section class="stage stage-6">
+        <Spine />
+        <div class="shell">
+          <h2 class="display-l measure">Online, estés donde estés.</h2>
+          <p class="lede measure stage-lede">
+            El acompañamiento es online. No depende de dónde vivas ni de cuánto
+            tengas que desplazarte: solo de encontrar un rato y un sitio donde
+            puedas hablar con calma.
+          </p>
+          <p class="said measure stage-said">No estamos solos/as.</p>
+          <JourneyFigure figure="apertura" placement="flow" />
+        </div>
+      </section>
+
+      <section class="stage stage-7" id="hablamos">
+        <Spine />
+        <div class="shell">
+          <h2 class="display-xl measure">¿Hablamos?</h2>
+          <p class="lede measure stage-lede">
+            El primer paso es solo una conversación. Sin prisa, y sin tener que
+            explicarlo todo de golpe.
+          </p>
+          <p class="stage-action">
+            <button
+              class="action"
+              type="button"
+              aria-disabled="true"
+              aria-describedby="cta-pendiente"
+            >
+              ¿Hablamos?
+            </button>
+            <span class="action-note" id="cta-pendiente">
+              <span class="pending">Pendiente</span> El destino de este botón —formulario,
+              WhatsApp o herramienta de reserva— es una decisión de producto todavía
+              sin resolver, así que por ahora no navega a ninguna parte.
+            </span>
+          </p>
+          <JourneyFigure figure="mano" placement="flow" />
+          <p class="figure-note">
+            <span class="pending">Pendiente</span> Este dibujo de la mano con la mariposa
+            es un sustituto provisional: el vector original de marca todavía no existe
+            como archivo.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="stage stage-7 colophon-stage">
+      <div class="shell">
+        <p class="colophon">
+          NeoCrisálida — Carmen. Acompañamiento psicológico y emocional online.
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
