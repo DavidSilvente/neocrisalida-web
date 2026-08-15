@@ -517,7 +517,7 @@ a {
 .display-xl {
   font-family: var(--font-display);
   font-size: clamp(2.75rem, 11vw, 6rem);
-  font-variation-settings: 'opsz' 14;
+  font-variation-settings: 'opsz' 16;
   font-weight: 520;
   letter-spacing: -0.035em;
   line-height: 1.06;
@@ -526,7 +526,7 @@ a {
 .display-l {
   font-family: var(--font-display);
   font-size: clamp(2.15rem, 7vw, 3.75rem);
-  font-variation-settings: 'opsz' 14;
+  font-variation-settings: 'opsz' 16;
   font-weight: 520;
   letter-spacing: -0.028em;
   line-height: 1.06;
@@ -853,4 +853,36 @@ figure {
   font-size: 0.8125rem;
   line-height: 1.5;
   max-width: 26ch;
+}
+
+/* Bodoni's fine cut, restored where the screen can actually render it.
+   The hairlines vanish when they fall below a device pixel, so the deciding
+   factor is pixel density — not the operating system. At 2dppx and above the
+   thin strokes survive at a much higher optical size, which is the face the
+   brief wants; below that the sturdier default above stays in place. No user
+   agent sniffing, no JavaScript: the media query asks about the actual cause. */
+@media (min-resolution: 2dppx) {
+  .display-xl {
+    font-variation-settings: 'opsz' 48;
+    font-weight: 500;
+  }
+
+  .display-l {
+    font-variation-settings: 'opsz' 44;
+    font-weight: 500;
+  }
+
+  .said {
+    font-variation-settings: 'opsz' 32;
+  }
+
+  .field h3 {
+    font-variation-settings: 'opsz' 24;
+    font-weight: 500;
+  }
+
+  .wordmark {
+    font-variation-settings: 'opsz' 18;
+    font-weight: 500;
+  }
 }

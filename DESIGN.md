@@ -27,27 +27,27 @@ typography:
     fontWeight: 520
     lineHeight: 1.06
     letterSpacing: '-0.035em'
-    fontVariation: "'opsz' 14"
+    fontVariation: "'opsz' 16 · 48 at 2dppx"
   display-l:
     fontFamily: 'Bodoni Moda, ui-serif, Georgia, serif'
     fontSize: 'clamp(2.15rem, 7vw, 3.75rem)'
     fontWeight: 520
     lineHeight: 1.06
     letterSpacing: '-0.028em'
-    fontVariation: "'opsz' 14"
+    fontVariation: "'opsz' 16 · 44 at 2dppx"
   title:
     fontFamily: 'Bodoni Moda, ui-serif, Georgia, serif'
     fontSize: 'clamp(1.25rem, 2.6vw, 1.6rem)'
     fontWeight: 540
     lineHeight: 1.08
     letterSpacing: '-0.02em'
-    fontVariation: "'opsz' 12"
+    fontVariation: "'opsz' 12 · 24 at 2dppx"
   said:
     fontFamily: 'Bodoni Moda, ui-serif, Georgia, serif'
     fontSize: 'clamp(1.35rem, 3.4vw, 2rem)'
     fontWeight: 500
     lineHeight: 1.24
-    fontVariation: "'opsz' 16"
+    fontVariation: "'opsz' 16 · 32 at 2dppx"
   field-line:
     fontFamily: 'Karla, ui-sans-serif, system-ui, sans-serif'
     fontSize: '1rem'
@@ -277,16 +277,25 @@ about difficult subjects never sounds performed.
 
 ### Named Rules
 
-**The Hairline Survival Rule.** Every Bodoni role sets `font-variation-settings`
-with a deliberately LOW `opsz` (12–16). The axis is what saves the hairlines;
-weight only assists, and stays near 520–540 — pushing it to 600 rescues the
-strokes but turns a didone heavy, which is a different way of losing the face.
-Matching `opsz` to the rendered size is the print-typography habit and it is
-wrong here: at high optical sizes Bodoni's hairlines — the crossbar of an `A`,
-the bar of an `e` — fall below one device pixel and disappear entirely at DPR 1,
-which is where many Android screens rasterise. A Bodoni role with `opsz` above
-16 is a defect. Verify type captures at **device pixel ratio 1**, never only at
-2: DPR 2 hides this completely.
+**The Hairline Survival Rule.** Bodoni ships in two cuts, chosen by pixel
+density, because a didone's hairlines — the crossbar of an `A`, the bar of an
+`e` — vanish when they fall below one device pixel. That is a function of
+density, not of the operating system, so the stylesheet asks
+`@media (min-resolution: 2dppx)` rather than sniffing a user agent, and it needs
+no JavaScript.
+
+- **Below 2dppx:** the sturdy cut. `opsz` 12–16, weight 520–540. The strokes
+  survive; the face reads a little firmer than intended.
+- **At 2dppx and above:** the fine cut, and the face the brief actually wants.
+  `opsz` 48 / 44 / 32 / 24 / 18 across display-xl, display-l, said, titles and
+  the wordmark, at weight 500.
+
+Matching `opsz` to the rendered size the way print does is what shipped a
+headline whose `A` had no crossbar. Never rescue a didone by adding weight
+alone: 600 keeps the strokes and turns the face heavy, which is a different way
+of losing it. **Verify type at device pixel ratio 1 AND 2** — each density hides
+the other's defect. The density block lives at the end of the stylesheet because
+it must override the base role declarations that follow them in source order.
 
 **The Descender Clearance Rule.** Bodoni's ascenders and descenders are long, so
 display leading never goes below 1.06 and headings never below 1.08. At 0.98 the
@@ -500,8 +509,9 @@ transitions on the action and the masthead link are unaffected and remain.
   has lightened.
 - **Do** set content in the shell's second column, measured from the gutter, at
   the measure its position in the journey calls for (30ch → 56ch).
-- **Do** keep `opsz` low (12–16) on every Bodoni role and let weight carry
-  presence, and check new type at device pixel ratio 1.
+- **Do** keep the two density cuts in step: a new Bodoni role declares its
+  sturdy `opsz` in the base rule and its fine `opsz` in the density block at the
+  end of the stylesheet, and gets checked at DPR 1 and DPR 2.
 - **Do** put per-instance geometry in the stylesheet keyed on a `data-*`
   attribute. The harness CSP is `default-src 'self'` with no `style-src-attr`
   allowance, so an inline `style` attribute will not apply. This is a hard
