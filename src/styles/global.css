@@ -502,27 +502,65 @@ a {
   stroke: none;
 }
 
-/* The line is drawn by default. Motion only reveals it; it never creates it. */
+/* The line is drawn by default. Motion only reveals it; it never creates it.
+ *
+ * Every range below is expressed in a SINGLE phase. Mixing two phases
+ * (`entry 5% cover 45%`) looks reasonable and is the bug that shipped: for a
+ * subject taller than the scrollport — which every figure and every stage run
+ * here is — the two phases resolve against different distances, the end offset
+ * lands before the start, and the range degenerates. The stroke then freezes
+ * part-drawn forever, so the page reads as disconnected line fragments with
+ * the figures missing entirely. `cover` is monotonic at any subject height, so
+ * these ranges always complete and `both` holds the finished state afterwards.
+ *
+ * e2e/journey-line.spec.ts asserts every path reaches dash offset 0. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .journey path {
+    /* Sparks are filled and strokeless: they fade in rather than draw, so the
+       dash properties must not reach them. The straight run is excluded too:
+       it is the one non-uniformly scaled subject, and a dash pattern on a
+       non-scaling stroke under non-uniform scale resolves against the rendered
+       length rather than the normalised one, so `stroke-dasharray: 1` became a
+       repeating dash and the spine rendered as separated fragments. It is
+       revealed by clip instead, which is scale-independent. */
+    .journey:not(.spine-run) path:not(.spark) {
       stroke-dasharray: 1;
       stroke-dashoffset: 1;
-      animation: nc-draw linear both;
+      animation-name: nc-draw;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: view();
-      animation-range: entry 5% cover 45%;
+      animation-range: cover 0% cover 25%;
     }
 
     .journey .spark {
       opacity: 0;
-      animation: nc-spark linear both;
+      animation-name: nc-spark;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: view();
-      animation-range: entry 40% cover 50%;
+      animation-range: cover 8% cover 28%;
     }
 
-    .spine-run path {
-      animation-range: entry 0% cover 90%;
+    /* The run stays ahead of the reader: it finishes early in its own stage so
+       the line is already there when the copy beside it comes into view. */
+    .spine-run {
+      clip-path: inset(0 0 100% 0);
+      animation-name: nc-reveal;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 20%;
     }
+  }
+}
+
+@keyframes nc-reveal {
+  to {
+    clip-path: inset(0 0 0% 0);
   }
 }
 
