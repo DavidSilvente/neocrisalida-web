@@ -5,6 +5,7 @@ import Spine from '../components/Spine.astro';
 import JourneyFigure from '../components/JourneyFigure.astro';
 import handButterflyImg from '../assets/illustrations/hand-butterfly-original.png';
 import logoImg from '../assets/logo/logo-original.png';
+import carmenPortrait from '../assets/photos/carmen-portrait.jpg';
 
 const situations = [
   {
@@ -171,12 +172,13 @@ const situations = [
               </p>
             </div>
             <figure class="portrait">
-              <span class="pending">Pendiente</span>
-              <figcaption class="dim">
-                Fotografía original de Carmen, en alta resolución. Marcador
-                provisional: no se usan capturas de Instagram ni banco de
-                imágenes.
-              </figcaption>
+              <Image
+                src={carmenPortrait}
+                alt="Carmen, psicóloga y terapeuta de NeoCrisálida"
+                class="portrait-img"
+                loading="lazy"
+                decoding="async"
+              />
             </figure>
           </div>
         </div>
