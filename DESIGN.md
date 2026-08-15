@@ -24,22 +24,22 @@ typography:
   display-xl:
     fontFamily: 'Bodoni Moda, ui-serif, Georgia, serif'
     fontSize: 'clamp(2.75rem, 11vw, 6rem)'
-    fontWeight: 600
-    lineHeight: 0.98
+    fontWeight: 520
+    lineHeight: 1.06
     letterSpacing: '-0.035em'
     fontVariation: "'opsz' 14"
   display-l:
     fontFamily: 'Bodoni Moda, ui-serif, Georgia, serif'
     fontSize: 'clamp(2.15rem, 7vw, 3.75rem)'
-    fontWeight: 600
-    lineHeight: 1.02
+    fontWeight: 520
+    lineHeight: 1.06
     letterSpacing: '-0.028em'
     fontVariation: "'opsz' 14"
   title:
     fontFamily: 'Bodoni Moda, ui-serif, Georgia, serif'
     fontSize: 'clamp(1.25rem, 2.6vw, 1.6rem)'
-    fontWeight: 600
-    lineHeight: 1.04
+    fontWeight: 540
+    lineHeight: 1.08
     letterSpacing: '-0.02em'
     fontVariation: "'opsz' 12"
   said:
@@ -278,13 +278,20 @@ about difficult subjects never sounds performed.
 ### Named Rules
 
 **The Hairline Survival Rule.** Every Bodoni role sets `font-variation-settings`
-with a deliberately LOW `opsz` (12–16), and presence comes from weight instead.
+with a deliberately LOW `opsz` (12–16). The axis is what saves the hairlines;
+weight only assists, and stays near 520–540 — pushing it to 600 rescues the
+strokes but turns a didone heavy, which is a different way of losing the face.
 Matching `opsz` to the rendered size is the print-typography habit and it is
 wrong here: at high optical sizes Bodoni's hairlines — the crossbar of an `A`,
 the bar of an `e` — fall below one device pixel and disappear entirely at DPR 1,
 which is where many Android screens rasterise. A Bodoni role with `opsz` above
-16, or relying on weight 500 at display scale, is a defect. Verify type captures
-at **device pixel ratio 1**, never only at 2: DPR 2 hides this completely.
+16 is a defect. Verify type captures at **device pixel ratio 1**, never only at
+2: DPR 2 hides this completely.
+
+**The Descender Clearance Rule.** Bodoni's ascenders and descenders are long, so
+display leading never goes below 1.06 and headings never below 1.08. At 0.98 the
+`p` of one line collided with the `h` of the next in the opening headline. Tight
+display leading is a real device of this world, but 1.06 is its floor.
 
 **The Travelling Measure Rule.** The reading measure widens with the journey:
 30ch, 34ch, 42ch, 42ch, 48ch, 52ch, 56ch across the seven stages. A new stage

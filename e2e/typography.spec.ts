@@ -49,3 +49,27 @@ test('display type keeps its optical size low enough for hairlines to survive @t
     `every Bodoni role must declare 'opsz' at ${MAX_OPSZ} or below; above that the hairlines drop out at DPR 1`,
   ).toEqual([]);
 });
+
+/**
+ * Bodoni's ascenders and descenders are long. At leading below 1, the `p` of
+ * one line collided with the `h` of the next in the opening headline.
+ */
+test('display leading clears the face descenders @type', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => document.fonts.ready);
+
+  const tight = await page.evaluate(() =>
+    ['.display-xl', '.display-l', 'h1', 'h2', 'h3']
+      .flatMap((role) =>
+        [...document.querySelectorAll(role)].map((el) => ({ role, el })),
+      )
+      .map(({ role, el }) => {
+        const style = getComputedStyle(el);
+        const ratio = parseFloat(style.lineHeight) / parseFloat(style.fontSize);
+        return { role, ratio: Math.round(ratio * 100) / 100 };
+      })
+      .filter(({ ratio }) => Number.isFinite(ratio) && ratio < 1.05),
+  );
+
+  expect(tight, 'display leading must stay at or above 1.05').toEqual([]);
+});
