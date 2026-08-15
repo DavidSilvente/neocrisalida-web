@@ -15,6 +15,10 @@ export default defineConfig([
       'playwright-report/',
       '.lighthouseci/',
       '.vercel/',
+      // Vendored agent tooling. Third-party code the project does not author
+      // or ship; linting it would gate our build on someone else's style.
+      '.github/skills/',
+      '.impeccable/',
     ],
   },
 

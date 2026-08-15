@@ -35,3 +35,7 @@ pnpm-debug.log*
 
 # Agent local state
 .atl/
+
+# Impeccable: regenerable review captures and machine-local state
+.impeccable/review/
+.impeccable/config.local.json

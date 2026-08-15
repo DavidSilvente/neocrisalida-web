@@ -6,3 +6,14 @@ test-results/
 playwright-report/
 .lighthouseci/
 .vercel/
+
+# Vendored agent tooling — third-party code the project does not author.
+.github/skills/
+.impeccable/
+
+# Client-authored source material. These are the brief and its references:
+# they are evidence, and reformatting them rewrites the client's own words.
+brief/
+references/
+assets/
+PRODUCT.md
