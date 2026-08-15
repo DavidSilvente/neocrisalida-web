@@ -27,21 +27,21 @@ typography:
     fontWeight: 520
     lineHeight: 1.06
     letterSpacing: '-0.035em'
-    fontVariation: "'opsz' 16 · 28 at 2dppx"
+    fontVariation: "'opsz' 16 · 18 at 2dppx"
   display-l:
     fontFamily: 'Bodoni Moda, ui-serif, Georgia, serif'
     fontSize: 'clamp(2.15rem, 7vw, 3.75rem)'
     fontWeight: 520
     lineHeight: 1.06
     letterSpacing: '-0.028em'
-    fontVariation: "'opsz' 16 · 26 at 2dppx"
+    fontVariation: "'opsz' 16 · 20 at 2dppx"
   title:
     fontFamily: 'Bodoni Moda, ui-serif, Georgia, serif'
     fontSize: 'clamp(1.25rem, 2.6vw, 1.6rem)'
     fontWeight: 540
     lineHeight: 1.08
     letterSpacing: '-0.02em'
-    fontVariation: "'opsz' 12 · 18 at 2dppx"
+    fontVariation: "'opsz' 12 · 16 at 2dppx"
   said:
     fontFamily: 'Bodoni Moda, ui-serif, Georgia, serif'
     fontSize: 'clamp(1.35rem, 3.4vw, 2rem)'
@@ -287,14 +287,21 @@ no JavaScript.
 - **Below 2dppx:** the sturdy cut. `opsz` 12–16, weight 520–540. The strokes
   survive; the face reads a little firmer than intended.
 - **At 2dppx and above:** the fine cut, and the face the brief actually wants.
-  `opsz` 28 / 26 / 22 / 18 / 16 across display-xl, display-l, said, titles and
+  `opsz` 22 / 20 / 18 / 16 / 14 across display-xl, display-l, said, titles and
   the wordmark, at weight 520.
 
-The fine cut is held at 28 rather than at the print-matched 48. Android's
+The fine cut is held at 22 rather than at the print-matched 48. Android's
 rasteriser drops strokes an iPhone keeps at the same reported density: a device
 showed the hairlines missing until a pinch-zoom forced a re-raster, which is the
 tell that the stroke sits under the raster threshold rather than under a pixel.
-Between 48 and 28 the face barely changes; the hairline thickness does.
+48 failed on that device, 28 improved it without fixing it, 22 is the current
+setting.
+
+**There is almost no margin left.** The sturdy branch is 16. If 22 still drops
+strokes on a real device, the two-branch approach has run out of room and the
+honest answer is a different face — a high-contrast serif drawn for screens —
+rather than another notch down this axis. Bodoni Moda is a print didone, and
+this is the edge of what it will do on a phone.
 
 Matching `opsz` to the rendered size the way print does is what shipped a
 headline whose `A` had no crossbar. Never rescue a didone by adding weight
