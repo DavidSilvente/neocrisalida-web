@@ -118,11 +118,11 @@ components:
     rounded: '{rounded.none}'
     padding: '1.5rem'
     width: 'min(100%, 22rem)'
-  nav-link:
+  masthead-action:
     backgroundColor: 'transparent'
     textColor: '{colors.ink-dim}'
     typography: '{typography.ui}'
-  nav-link-hover:
+  masthead-action-hover:
     textColor: '{colors.ink}'
   wordmark:
     backgroundColor: 'transparent'
@@ -254,9 +254,10 @@ about difficult subjects never sounds performed.
 
 ### Hierarchy
 
-- **Display XL** (`{typography.display-xl}`): The page's two loudest moments only
-  — the opening statement and the closing question. Set nearly solid (0.98) and
-  tightly tracked.
+- **Display XL** (`{typography.display-xl}`): The journey's three loudest
+  moments only — the opening, the manifesto ("Lo que callamos también necesita
+  un lugar."), and the closing question. Set nearly solid (0.98) and tightly
+  tracked.
 - **Display L** (`{typography.display-l}`): Every stage heading between them.
 - **Title** (`{typography.title}`): The situation names inside the list.
 - **Said** (`{typography.said}`): Bodoni italic. The pull-quote voice used for the
@@ -285,8 +286,12 @@ heading without a matched `opsz` is a defect, not a shortcut.
 takes the measure of its position; it does not pick a comfortable default.
 
 **The Level Voice Rule.** Karla is never tracked, uppercased, or weighted for
-emphasis, with exactly one exception: the `Pendiente` placeholder label. No
-kickers, no eyebrows, no small-caps section tags.
+emphasis, with exactly two exceptions: the `Pendiente` placeholder label, and
+the single eyebrow above the opening headline, which the brief asks for by name
+to orient a visitor arriving from a social bio. No second eyebrow, and no
+small-caps section tags anywhere else. _This is the one place the build departs
+from the craft floor, which refuses eyebrows outright; it is here because the
+brief specified it, not because the pattern was reached for._
 
 ## Layout
 
@@ -433,13 +438,15 @@ page is one drawing.
 
 ### Navigation
 
-- **Style:** A flat masthead above the first stage — wordmark left, links right,
-  baseline-aligned, wrapping rather than collapsing to a menu button. No bar, no
-  background, no border, not sticky.
+- **Style:** There is no menu. The page is one journey rather than a set of
+  destinations, so the masthead carries the identity and a single quiet action.
+  Flat above the first stage — wordmark left, `¿Hablamos?` right,
+  baseline-aligned. No bar, no background, no border, not sticky.
 - **Wordmark:** Bodoni at `1.35rem` (`opsz` 18) with the second half of the name
   in the line's colour.
-- **Links:** Dimmed ink at the UI step, no underline, brightening to full ink
-  over `240ms` on hover (removed under reduced motion).
+- **Masthead action:** Dimmed ink at the UI step, underlined with the world's
+  own `1.5px` rule rather than a text-decoration, brightening to full ink over
+  `240ms` on hover (removed under reduced motion).
 - **Skip link:** Offscreen until focused, then pinned at `0.75rem` in fuchsia on
   white.
 
@@ -516,7 +523,10 @@ listener.
   introduce a second accent colour.
 - **Don't** centre content or set a heading centred. Everything is measured from
   the spine.
-- **Don't** add a kicker, eyebrow, or uppercase section tag above a heading. The
-  only uppercase, wide-tracked type in the system is the `Pendiente` marker.
+- **Don't** add a second eyebrow, kicker, or uppercase section tag. The opening
+  eyebrow is brief-mandated and singular; everywhere else the heading carries
+  its own weight.
+- **Don't** reintroduce a navigation menu. Sections are reached by scrolling;
+  the masthead offers identity and one action, nothing else.
 - **Don't** reach for a gradient hero, a stock photograph, or a decorative
   butterfly graphic. The line is the imagery.

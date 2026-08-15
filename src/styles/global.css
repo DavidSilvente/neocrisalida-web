@@ -750,6 +750,17 @@ a {
 
 /* --- Nav ---------------------------------------------------------------- */
 
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--nc-ink-dim);
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
 .masthead {
   position: relative;
   z-index: 2;
@@ -777,25 +788,27 @@ a {
   color: var(--nc-line);
 }
 
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem clamp(0.9rem, 2.5vw, 1.75rem);
+/* There is no menu. The page is one journey, not a set of destinations, so
+   the masthead carries the identity and a single quiet way in. */
+.masthead-action {
   font-size: 0.9375rem;
-}
-
-.nav a {
-  text-decoration: none;
   color: var(--nc-ink-dim);
-  transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  padding-bottom: 0.2rem;
+  border-bottom: var(--nc-stroke) solid
+    color-mix(in oklab, var(--nc-line) 55%, transparent);
+  transition:
+    color 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 240ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nav a:hover {
+.masthead-action:hover {
   color: var(--nc-ink);
+  border-bottom-color: var(--nc-line);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav a {
+  .masthead-action {
     transition: none;
   }
 }
