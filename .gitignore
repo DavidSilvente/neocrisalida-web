@@ -39,3 +39,8 @@ pnpm-debug.log*
 # Impeccable: regenerable review captures and machine-local state
 .impeccable/review/
 .impeccable/config.local.json
+
+# Impeccable: locally installed agent tooling, not part of the project
+.github/agents/
+.github/hooks/
+.github/skills/
