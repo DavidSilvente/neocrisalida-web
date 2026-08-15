@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import Spine from '../components/Spine.astro';
 import JourneyFigure from '../components/JourneyFigure.astro';
 import handButterflyImg from '../assets/illustrations/hand-butterfly-original.png';
+import logoImg from '../assets/logo/logo-neocrisalida.png';
 
 const situations = [
   {
@@ -84,7 +85,14 @@ const situations = [
     <a class="skip" href="#contenido">Saltar al contenido</a>
 
     <header class="masthead">
-      <a class="wordmark" href="#inicio">Neo<em>Crisálida</em></a>
+      <a class="wordmark-logo" href="#inicio" aria-label="NeoCrisálida - Inicio">
+        <Image
+          src={logoImg}
+          alt="NeoCrisálida"
+          class="masthead-logo-img"
+          loading="eager"
+        />
+      </a>
       <a class="masthead-action" href="#hablamos">¿Hablamos?</a>
     </header>
 
