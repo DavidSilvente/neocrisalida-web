@@ -164,8 +164,8 @@ display against a plain Karla for text, no cards, no rounded panels, no
 shadows at rest, no filled shapes anywhere except one accent button and a
 handful of four-point sparks. The one saturated colour, fuchsia (#b0166f), is
 the colour Carmen actually wears in the published material, and it appears only
-where the visitor is meant to act. The build carries zero JavaScript; every
-piece of motion is CSS scroll-driven animation.
+where the visitor is meant to act. The build carries zero JavaScript, and the
+drawing does not animate: it is whole the moment the page arrives.
 
 **Key Characteristics:**
 
@@ -174,7 +174,7 @@ piece of motion is CSS scroll-driven animation.
 - Type set from a spine in the left gutter, never centred
 - Flat at rest: no shadows, no cards, no radius except one pill
 - Fuchsia as the single live colour, used only for action
-- Zero JavaScript; motion is `animation-timeline: view()` only
+- Zero JavaScript; the drawing is static and whole on arrival
 
 ## Colors
 
@@ -467,13 +467,13 @@ The system's defining component, in two parts.
   the stroke never crosses running text. Every path carries `pathLength="1"` so
   one dash rule draws all of them, and every figure is `aria-hidden`.
 
-**Motion.** The line is fully drawn by default; motion only reveals it. Inside
-`@supports (animation-timeline: view())` and
-`@media (prefers-reduced-motion: no-preference)`, paths draw themselves from
-`stroke-dashoffset: 1` to `0` across `entry 5% cover 45%` of their own view
-timeline, sparks fade in over `entry 40% cover 50%`, and the straight run draws
-across `entry 0% cover 90%`. There is no JavaScript on the page and no scroll
-listener.
+**Motion.** None. The drawing is static. It was previously revealed by CSS
+scroll-driven animation (`animation-timeline: view()`), which was removed
+because Chrome and WebKit resolved the range differently on subjects taller
+than the scrollport: the wide figures sat between 53% and 69% drawn in Chrome
+at the moment a reader met them, while WebKit completed them. An element that
+carries the whole page may not render differently per engine. The interaction
+transitions on the action and the masthead link are unaffected and remain.
 
 ## Do's and Don'ts
 
@@ -496,9 +496,9 @@ listener.
 - **Do** self-host fonts as `woff2` subsets in `public/fonts/` with
   `font-display: swap`, and preload only the roman Latin subsets. `font-src` is
   `'self'`; a Google Fonts link will be blocked.
-- **Do** express motion as CSS scroll-driven animation inside `@supports` and
-  `@media (prefers-reduced-motion: no-preference)`, with the resting state
-  complete and legible without it.
+- **Do** keep the drawing whole on arrival. If a reveal is ever reintroduced,
+  it must finish identically in Chrome and WebKit at every subject height, and
+  `e2e/journey-line.spec.ts` must be updated to prove it rather than relaxed.
 - **Do** mark unresolved content with the uppercase `Pendiente` label plus a
   caption saying what is missing and what will replace it.
 - **Do** keep an unresolved action `aria-disabled` and focusable, with its
@@ -508,6 +508,8 @@ listener.
 
 - **Don't** add JavaScript for visual behaviour. The surface ships with zero JS
   and the drawing does not depend on any.
+- **Don't** hide any part of the line behind a scroll-driven reveal. It was
+  tried; the engines disagreed and readers met half-drawn figures.
 - **Don't** use an inline `style` attribute anywhere. It is silently dropped by
   the CSP.
 - **Don't** introduce a second stroke weight, a filled illustration, or an
