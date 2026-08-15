@@ -821,11 +821,16 @@ a {
   align-items: center;
   text-decoration: none;
   margin-right: auto;
+  width: clamp(7.5rem, 16vw, 10.5rem);
+  aspect-ratio: 306 / 88;
+  overflow: hidden;
 }
 
 .masthead-logo-img {
-  height: clamp(1.85rem, 4vw, 2.5rem);
-  width: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
   display: block;
 }
 
