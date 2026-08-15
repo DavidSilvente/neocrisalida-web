@@ -556,17 +556,72 @@ a {
 .fields {
   list-style: none;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1.75rem, 5vw, 2.5rem);
   margin-top: clamp(2.5rem, 6vw, 4rem);
   max-width: 64rem;
 }
 
+/* Mobile: the situations are moments along the line, not rows in a list.
+   Each one hangs off the spine at its own distance, with its own measure and
+   its own air, and the rule that used to sit above it becomes a branch of the
+   drawing — a short stroke leaving the spine to reach that topic. The lengths
+   differ because the distances do, so nothing repeats. The cycle is six, so
+   the rhythm holds whether there are six topics or ten. */
 .field {
-  padding-top: 1rem;
-  border-top: var(--nc-stroke) solid
-    color-mix(in oklab, var(--nc-line) 60%, transparent);
+  position: relative;
+  margin-left: var(--field-indent, 0);
+  max-width: var(--field-measure, 24ch);
+  padding-top: 0.35rem;
+}
+
+.field + .field {
+  margin-top: var(--field-air, 2.5rem);
+}
+
+.field::before {
+  content: '';
+  position: absolute;
+  top: 0.7em;
+  left: calc(-1 * (1.75rem + var(--field-indent, 0rem)));
+  width: calc(1.75rem + var(--field-indent, 0rem));
+  height: var(--nc-stroke);
+  background: color-mix(in oklab, var(--nc-line) 55%, transparent);
+}
+
+.field:nth-child(6n + 1) {
+  --field-indent: 0rem;
+  --field-measure: 24ch;
+  --field-air: 0rem;
+  --field-title: 1.4rem;
+}
+.field:nth-child(6n + 2) {
+  --field-indent: 1.5rem;
+  --field-measure: 19ch;
+  --field-air: 3.25rem;
+  --field-title: 1.15rem;
+}
+.field:nth-child(6n + 3) {
+  --field-indent: 0.75rem;
+  --field-measure: 23ch;
+  --field-air: 2.25rem;
+  --field-title: 1.3rem;
+}
+.field:nth-child(6n + 4) {
+  --field-indent: 2rem;
+  --field-measure: 18ch;
+  --field-air: 3.75rem;
+  --field-title: 1.1rem;
+}
+.field:nth-child(6n + 5) {
+  --field-indent: 0.5rem;
+  --field-measure: 24ch;
+  --field-air: 2rem;
+  --field-title: 1.35rem;
+}
+.field:nth-child(6n + 6) {
+  --field-indent: 1.25rem;
+  --field-measure: 21ch;
+  --field-air: 3rem;
+  --field-title: 1.2rem;
 }
 
 /* Controlled irregularity, not a card grid: three widths and two indents that
@@ -577,6 +632,27 @@ a {
     grid-template-columns: repeat(12, 1fr);
     column-gap: clamp(1.5rem, 4vw, 3rem);
     row-gap: clamp(2.75rem, 6vw, 4.25rem);
+  }
+
+  /* Desktop keeps the composition it already had. */
+  .field {
+    margin-left: 0;
+    max-width: none;
+    padding-top: 1rem;
+    border-top: var(--nc-stroke) solid
+      color-mix(in oklab, var(--nc-line) 60%, transparent);
+  }
+
+  .field + .field {
+    margin-top: 0;
+  }
+
+  .field::before {
+    content: none;
+  }
+
+  .field h3 {
+    font-size: clamp(1.25rem, 2.6vw, 1.6rem);
   }
 
   .field:nth-child(3n + 1) {
@@ -594,7 +670,7 @@ a {
 }
 
 .field h3 {
-  font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+  font-size: var(--field-title, 1.3rem);
   font-variation-settings: 'opsz' 12;
   font-weight: 540;
   margin-bottom: 0.4rem;

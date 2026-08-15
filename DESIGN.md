@@ -350,8 +350,16 @@ opens: no offset for stages 1–2, then `clamp(0rem, 3vw, 3rem)` at stages 3–4
 The situations list is a deliberately unequal 12-column field, not a card grid:
 three widths and two vertical offsets repeating every third item
 (`span 5` from column 1, `span 4` from column 7 with a top offset, `span 6` from
-column 2), so the rhythm holds whether there are six items or ten. Below 48rem it
-collapses to a single stacked column.
+column 2), so the rhythm holds whether there are six items or ten.
+
+Below 48rem it is not that grid collapsed — a stacked column of equal rows with
+equal rules is the same generic list the composition exists to refuse, just
+turned vertical. Mobile gets its own composition: each topic hangs off the spine
+at its own indent (0 to 2rem), with its own measure (18–24ch), its own air
+(2–3.75rem) and its own title size (1.1–1.4rem), on a six-item cycle. The rule
+above each topic becomes a branch of the drawing: a stroke leaving the spine to
+reach that topic, whose length is that topic's own distance from the line, so no
+two are alike and none reads as a divider.
 
 ### Named Rules
 
@@ -364,8 +372,18 @@ spine and reads wider than the one before it. Opening is expressed as geometry
 before it is expressed as words.
 
 **The Irregular Field Rule.** Repeating content is laid out as an irregular
-field on a 12-column grid, never as equal cards in a row. If a set of items
-looks like a card grid, it is wrong.
+field, never as equal cards in a row and never as equal stacked rows. Wide
+viewports get the 12-column field; narrow ones get their own indented
+composition hung off the spine. A set of items that reads as a card grid on
+desktop, or as a uniform list on mobile, is wrong in both cases — the second is
+the easier failure to miss, because collapsing to one column feels like
+responsiveness rather than surrender.
+
+**The Branch, Not The Divider Rule.** A horizontal rule in this world is either
+part of the drawing or it does not exist. On mobile the topic rules leave the
+spine and vary in length with each topic's distance from it; they connect rather
+than separate. A repeated rule of identical length, doing nothing but sitting
+between two things, is decoration and gets deleted.
 
 ## Elevation & Depth
 
