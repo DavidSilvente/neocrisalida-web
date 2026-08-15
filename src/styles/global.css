@@ -487,6 +487,36 @@ a {
   }
 }
 
+.hand-figure-flow {
+  grid-column: 1 / -1;
+  position: relative;
+  width: var(--hand-w);
+  max-width: none;
+  margin-top: clamp(1.5rem, 3.5vw, 3rem);
+  margin-left: calc(var(--nc-gutter-center) - (var(--hand-w) * 0.021));
+  --hand-w: min(100vw - 2.5rem, 26rem);
+}
+
+.hand-original-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (min-width: 48rem) {
+  .hand-figure-flow {
+    --hand-w: min(100%, 34rem);
+    margin-left: calc(var(--nc-gutter-center) - (var(--hand-w) * 0.021));
+  }
+}
+
+@media (min-width: 80rem) {
+  .hand-figure-flow {
+    --hand-w: min(100%, 42rem);
+    margin-left: calc(var(--nc-gutter-center) - (var(--hand-w) * 0.021));
+  }
+}
+
 .journey path {
   fill: none;
   stroke: var(--nc-line);

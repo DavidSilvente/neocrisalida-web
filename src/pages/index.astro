@@ -1,7 +1,9 @@
 ---
 import '../styles/global.css';
+import { Image } from 'astro:assets';
 import Spine from '../components/Spine.astro';
 import JourneyFigure from '../components/JourneyFigure.astro';
+import handButterflyImg from '../assets/illustrations/hand-butterfly-original.png';
 
 const situations = [
   {
@@ -228,12 +230,15 @@ const situations = [
               sin resolver, así que por ahora no navega a ninguna parte.
             </span>
           </p>
-          <JourneyFigure figure="mano" placement="flow" />
-          <p class="figure-note">
-            <span class="pending">Pendiente</span> Este dibujo de la mano con la mariposa
-            es un sustituto provisional: el vector original de marca todavía no existe
-            como archivo.
-          </p>
+          <div class="hand-figure-flow">
+            <Image
+              src={handButterflyImg}
+              alt="Mano abierta con mariposa en vuelo de NeoCrisálida"
+              class="hand-original-img"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </div>
       </section>
     </main>
