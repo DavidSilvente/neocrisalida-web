@@ -525,7 +525,7 @@ a {
   border-radius: 1.5rem;
   border: var(--nc-stroke) solid
     color-mix(in oklab, var(--nc-line) 30%, transparent);
-  background: color-mix(in oklab, var(--nc-ground-7) 94%, #fff);
+  background: #ffffff;
   padding: 1.5rem 0 0.5rem;
   box-shadow:
     0 4px 6px -1px rgba(22, 9, 43, 0.03),
@@ -549,25 +549,19 @@ a {
   margin-bottom: 1rem;
 }
 
-.calendly-inline-widget,
-.calendly-inline-widget iframe,
-.calendly-frame {
-  width: 100% !important;
-  min-width: 100% !important;
-  height: 1120px !important;
-  border: 0 !important;
-  border-radius: 1rem;
-  display: block;
-  background: transparent;
-  overflow: hidden !important;
+.calendly-inline-widget {
+  width: 100%;
+  min-width: 100%;
+  background: #ffffff;
 }
 
-@media (min-width: 54rem) {
-  .calendly-inline-widget,
-  .calendly-inline-widget iframe,
-  .calendly-frame {
-    height: 750px !important;
-  }
+.calendly-inline-widget iframe,
+.calendly-frame {
+  width: 100%;
+  border: 0;
+  border-radius: 1rem;
+  display: block;
+  background: #ffffff;
 }
 
 .journey path {
