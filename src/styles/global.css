@@ -361,6 +361,9 @@ a {
   .stage-7 .shell > * {
     margin-left: clamp(0rem, 12vw, 12rem);
   }
+  .stage-7 .shell > .calendly-wrap {
+    margin-left: 0;
+  }
   .stage .figure-flow {
     margin-left: calc(
       var(--nc-gutter-center) - (var(--fig-w) * var(--spine-x))
