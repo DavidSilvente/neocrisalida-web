@@ -297,11 +297,6 @@ const situations = [
               O elige fecha y hora en el calendario:
             </h3>
             <div id="calendly-inline-embed" class="calendly-embed-target"></div>
-            <script
-              is:inline
-              type="text/javascript"
-              src="https://assets.calendly.com/assets/external/widget.js"
-              async></script>
           </div>
           <div class="hand-figure-flow">
             <Image
@@ -320,61 +315,95 @@ const situations = [
           const container = document.getElementById('calendly-inline-embed');
           if (!container) return;
 
-          let initialized = false;
+          let loaded = false;
 
-          function mount() {
-            if (initialized || !container) return;
-            const calendlyGlobal = (
-              window as unknown as {
-                Calendly?: {
-                  initInlineWidget?: (opts: Record<string, unknown>) => void;
-                };
+          function loadWidget() {
+            if (loaded || !container) return;
+            loaded = true;
+
+            function initSdk() {
+              if (!container) return;
+              const calendlyGlobal = (
+                window as unknown as {
+                  Calendly?: {
+                    initInlineWidget?: (opts: Record<string, unknown>) => void;
+                  };
+                }
+              ).Calendly;
+
+              if (
+                calendlyGlobal &&
+                typeof calendlyGlobal.initInlineWidget === 'function'
+              ) {
+                container.innerHTML = '';
+                calendlyGlobal.initInlineWidget({
+                  url: 'https://calendly.com/berbelnajasjj/30min?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=16092b&primary_color=b0166f',
+                  parentElement: container,
+                  resize: true,
+                });
+              } else {
+                setTimeout(initSdk, 50);
               }
-            ).Calendly;
+            }
 
-            if (
-              calendlyGlobal &&
-              typeof calendlyGlobal.initInlineWidget === 'function'
-            ) {
-              initialized = true;
-              container.innerHTML = '';
-              calendlyGlobal.initInlineWidget({
-                url: 'https://calendly.com/berbelnajasjj/30min?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=16092b&primary_color=b0166f',
-                parentElement: container,
-                resize: true,
-              });
+            const existingScript = document.querySelector(
+              'script[src="https://assets.calendly.com/assets/external/widget.js"]',
+            );
+            if (!existingScript) {
+              const script = document.createElement('script');
+              script.src =
+                'https://assets.calendly.com/assets/external/widget.js';
+              script.async = true;
+              script.onload = initSdk;
+              document.head.appendChild(script);
             } else {
-              setTimeout(mount, 50);
-            }
-          }
-
-          window.addEventListener('message', (e) => {
-            if (
-              e.origin !== 'https://calendly.com' &&
-              e.origin !== 'https://assets.calendly.com'
-            ) {
-              return;
+              initSdk();
             }
 
-            if (e.data && typeof e.data === 'object') {
-              const eventName = (e.data as { event?: string }).event;
-              const payload = (
-                e.data as { payload?: { height?: number | string } }
-              ).payload;
+            window.addEventListener('message', (e) => {
+              if (
+                e.origin !== 'https://calendly.com' &&
+                e.origin !== 'https://assets.calendly.com'
+              ) {
+                return;
+              }
 
-              if (eventName === 'calendly.page_height' && payload?.height) {
-                const h = Number(payload.height);
-                if (h > 0) {
-                  const iframe = container.querySelector('iframe');
-                  if (iframe) {
-                    iframe.style.height = `${h}px`;
+              if (e.data && typeof e.data === 'object') {
+                const eventName = (e.data as { event?: string }).event;
+                const payload = (
+                  e.data as { payload?: { height?: number | string } }
+                ).payload;
+
+                if (eventName === 'calendly.page_height' && payload?.height) {
+                  const h = Number(payload.height);
+                  if (h > 0) {
+                    const iframe = container.querySelector('iframe');
+                    if (iframe) {
+                      iframe.style.height = `${h}px`;
+                    }
                   }
                 }
               }
-            }
-          });
+            });
+          }
 
-          mount();
+          if (
+            'IntersectionObserver' in window &&
+            window.location.hash !== '#hablamos'
+          ) {
+            const observer = new IntersectionObserver(
+              (entries) => {
+                if (entries.some((entry) => entry.isIntersecting)) {
+                  observer.disconnect();
+                  loadWidget();
+                }
+              },
+              { rootMargin: '300px 0px' },
+            );
+            observer.observe(container);
+          } else {
+            loadWidget();
+          }
         }
 
         if (document.readyState === 'loading') {
