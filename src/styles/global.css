@@ -518,6 +518,8 @@ a {
 }
 
 .calendly-wrap {
+  position: relative;
+  z-index: 10;
   margin-top: clamp(2.5rem, 5vw, 4rem);
   margin-bottom: clamp(2rem, 4vw, 3rem);
   max-width: 64rem;
@@ -531,6 +533,8 @@ a {
     0 4px 6px -1px rgba(22, 9, 43, 0.03),
     0 16px 36px -8px rgba(22, 9, 43, 0.07);
   box-sizing: border-box;
+  pointer-events: auto;
+  touch-action: manipulation;
 }
 
 @media (max-width: 48rem) {
@@ -550,18 +554,26 @@ a {
 }
 
 .calendly-embed-target {
+  position: relative;
+  z-index: 10;
   width: 100%;
   min-width: 100%;
   min-height: 650px;
   background: #ffffff;
+  pointer-events: auto;
+  touch-action: manipulation;
 }
 
 .calendly-embed-target iframe {
+  position: relative;
+  z-index: 10;
   width: 100% !important;
   min-width: 100% !important;
   border: 0 !important;
   border-radius: 1rem;
   background: #ffffff;
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
 }
 
 .journey path {
