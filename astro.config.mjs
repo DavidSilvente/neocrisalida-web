@@ -55,6 +55,7 @@ export default defineConfig({
         "img-src 'self' data:",
         "font-src 'self'",
         "connect-src 'self'",
+        "frame-src 'self' https://calendly.com",
         "object-src 'none'",
         "base-uri 'self'",
         "form-action 'self'",
