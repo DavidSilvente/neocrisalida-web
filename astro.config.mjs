@@ -52,14 +52,20 @@ export default defineConfig({
     csp: {
       directives: [
         "default-src 'self'",
-        "img-src 'self' data:",
+        "img-src 'self' data: https://assets.calendly.com",
         "font-src 'self'",
-        "connect-src 'self'",
+        "connect-src 'self' https://calendly.com https://assets.calendly.com",
         "frame-src 'self' https://calendly.com",
         "object-src 'none'",
         "base-uri 'self'",
         "form-action 'self'",
       ],
+      scriptDirective: {
+        resources: ["'self'", 'https://assets.calendly.com'],
+      },
+      styleDirective: {
+        resources: ["'self'", 'https://assets.calendly.com'],
+      },
     },
   },
 
