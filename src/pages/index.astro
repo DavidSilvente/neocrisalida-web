@@ -348,6 +348,32 @@ const situations = [
             }
           }
 
+          window.addEventListener('message', (e) => {
+            if (
+              e.origin !== 'https://calendly.com' &&
+              e.origin !== 'https://assets.calendly.com'
+            ) {
+              return;
+            }
+
+            if (e.data && typeof e.data === 'object') {
+              const eventName = (e.data as { event?: string }).event;
+              const payload = (
+                e.data as { payload?: { height?: number | string } }
+              ).payload;
+
+              if (eventName === 'calendly.page_height' && payload?.height) {
+                const h = Number(payload.height);
+                if (h > 0) {
+                  const iframe = container.querySelector('iframe');
+                  if (iframe) {
+                    iframe.style.height = `${h}px`;
+                  }
+                }
+              }
+            }
+          });
+
           mount();
         }
 

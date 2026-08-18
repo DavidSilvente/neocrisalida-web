@@ -528,7 +528,9 @@ a {
   border: var(--nc-stroke) solid
     color-mix(in oklab, var(--nc-line) 30%, transparent);
   background: #ffffff;
-  padding: clamp(1.25rem, 3vw, 2rem) clamp(0.5rem, 2vw, 1.5rem);
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+  padding-inline: 0;
+  padding-bottom: 0;
   box-shadow:
     0 4px 6px -1px rgba(22, 9, 43, 0.03),
     0 16px 36px -8px rgba(22, 9, 43, 0.07);
@@ -537,20 +539,14 @@ a {
   touch-action: manipulation;
 }
 
-@media (max-width: 48rem) {
-  .calendly-wrap {
-    padding: 1.5rem 0 0.75rem;
-  }
-}
-
 .calendly-heading {
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 2.5vw, 1.55rem);
   font-variation-settings: 'opsz' 14;
   font-weight: 540;
   color: var(--nc-ink);
-  padding-inline: clamp(1rem, 3vw, 1.75rem);
-  margin-bottom: 1rem;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  margin-bottom: 0.75rem;
 }
 
 .calendly-embed-target {
@@ -558,10 +554,11 @@ a {
   z-index: 10;
   width: 100%;
   min-width: 100%;
-  min-height: 650px;
-  background: #ffffff;
+  background: transparent;
   pointer-events: auto;
   touch-action: manipulation;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
 }
 
 .calendly-embed-target iframe {
@@ -570,8 +567,10 @@ a {
   width: 100% !important;
   min-width: 100% !important;
   border: 0 !important;
-  border-radius: 1rem;
-  background: #ffffff;
+  display: block;
+  background: transparent;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
   pointer-events: auto !important;
   touch-action: manipulation !important;
 }
