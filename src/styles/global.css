@@ -517,6 +517,34 @@ a {
   }
 }
 
+.calendly-wrap {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  max-width: 58rem;
+  border-radius: 1.25rem;
+  border: var(--nc-stroke) solid
+    color-mix(in oklab, var(--nc-line) 40%, transparent);
+  background: color-mix(in oklab, var(--nc-ground-7) 92%, #fff);
+  padding: 1.5rem 0.5rem 0.5rem;
+  box-shadow: 0 10px 30px -15px rgba(22, 9, 43, 0.08);
+}
+
+.calendly-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+  font-variation-settings: 'opsz' 14;
+  font-weight: 540;
+  color: var(--nc-ink);
+  padding-inline: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.calendly-inline-widget {
+  width: 100%;
+  min-width: 320px;
+  height: 700px;
+}
+
 .journey path {
   fill: none;
   stroke: var(--nc-line);
