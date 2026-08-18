@@ -773,6 +773,13 @@ a {
     color-mix(in oklab, var(--nc-fuchsia) 75%, transparent);
 }
 
+.action-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .action {
     transition: none;
