@@ -526,11 +526,17 @@ a {
   border: var(--nc-stroke) solid
     color-mix(in oklab, var(--nc-line) 30%, transparent);
   background: color-mix(in oklab, var(--nc-ground-7) 94%, #fff);
-  padding: clamp(1.25rem, 3vw, 2rem) clamp(0.5rem, 2vw, 1.25rem) 1rem;
+  padding: 1.5rem 0 0.5rem;
   box-shadow:
     0 4px 6px -1px rgba(22, 9, 43, 0.03),
     0 12px 28px -6px rgba(22, 9, 43, 0.06);
   box-sizing: border-box;
+}
+
+@media (min-width: 48rem) {
+  .calendly-wrap {
+    padding: 1.75rem 1rem 1rem;
+  }
 }
 
 .calendly-heading {
@@ -539,7 +545,7 @@ a {
   font-variation-settings: 'opsz' 14;
   font-weight: 540;
   color: var(--nc-ink);
-  padding-inline: clamp(0.5rem, 2vw, 1.25rem);
+  padding-inline: 1.25rem;
   margin-bottom: 1rem;
 }
 
@@ -548,7 +554,7 @@ a {
 .calendly-frame {
   width: 100% !important;
   min-width: 100% !important;
-  height: 980px !important;
+  height: 1120px !important;
   border: 0 !important;
   border-radius: 1rem;
   display: block;
@@ -560,7 +566,7 @@ a {
   .calendly-inline-widget,
   .calendly-inline-widget iframe,
   .calendly-frame {
-    height: 720px !important;
+    height: 750px !important;
   }
 }
 
