@@ -361,10 +361,6 @@ a {
   .stage-7 .shell > * {
     margin-left: clamp(0rem, 12vw, 12rem);
   }
-  .stage-7 .shell > .calendly-section,
-  .stage-7 .shell > .calendly-wrap {
-    margin-left: 0;
-  }
   .stage .figure-flow {
     margin-left: calc(
       var(--nc-gutter-center) - (var(--fig-w) * var(--spine-x))
@@ -557,7 +553,7 @@ a {
   z-index: 10;
   width: 100%;
   min-width: 100%;
-  min-height: 590px;
+  min-height: 600px;
   background: transparent;
   pointer-events: auto;
   touch-action: manipulation;
@@ -568,6 +564,7 @@ a {
   z-index: 10;
   width: 100% !important;
   min-width: 100% !important;
+  min-height: 600px;
   border: 0 !important;
   display: block;
   background: transparent;
