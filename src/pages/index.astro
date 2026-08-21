@@ -297,13 +297,11 @@ const situations = [
               O elige fecha y hora en el calendario:
             </h3>
             <div class="calendly-wrap">
-              <div id="calendly-inline-embed" class="calendly-embed-target">
-                <iframe
-                  src="https://calendly.com/berbelnajasjj/30min?embed_type=Inline&hide_event_type_details=1&hide_landing_page_details=1&hide_gdpr_banner=1&background_color=f7f3ee&text_color=1d0f3c&primary_color=b0166f"
-                  width="100%"
-                  height="100%"
-                  title="Seleccionar fecha y hora en Calendly"
-                  loading="lazy"></iframe>
+              <div
+                id="calendly-inline-embed"
+                class="calendly-embed-target"
+                data-url="https://calendly.com/berbelnajasjj/30min?hide_event_type_details=1&hide_landing_page_details=1&hide_gdpr_banner=1&background_color=f7f3ee&text_color=1d0f3c&primary_color=b0166f"
+              >
               </div>
             </div>
           </div>
@@ -324,6 +322,71 @@ const situations = [
           const container = document.getElementById('calendly-inline-embed');
           if (!container) return;
 
+          let initialized = false;
+
+          function initWidget() {
+            if (initialized || !container) return;
+            initialized = true;
+
+            function runInit() {
+              if (!container) return;
+              const calendlyGlobal = (
+                window as unknown as {
+                  Calendly?: {
+                    initInlineWidget?: (opts: Record<string, unknown>) => void;
+                  };
+                }
+              ).Calendly;
+
+              if (
+                calendlyGlobal &&
+                typeof calendlyGlobal.initInlineWidget === 'function'
+              ) {
+                container.innerHTML = '';
+                calendlyGlobal.initInlineWidget({
+                  url: 'https://calendly.com/berbelnajasjj/30min?hide_event_type_details=1&hide_landing_page_details=1&hide_gdpr_banner=1&background_color=f7f3ee&text_color=1d0f3c&primary_color=b0166f',
+                  parentElement: container,
+                });
+              } else {
+                setTimeout(runInit, 50);
+              }
+            }
+
+            const scriptUrl =
+              'https://assets.calendly.com/assets/external/widget.js';
+            const existingScript = document.querySelector(
+              `script[src="${scriptUrl}"]`,
+            );
+
+            if (!existingScript) {
+              const script = document.createElement('script');
+              script.src = scriptUrl;
+              script.async = true;
+              script.onload = runInit;
+              document.head.appendChild(script);
+            } else {
+              runInit();
+            }
+          }
+
+          if (
+            'IntersectionObserver' in window &&
+            window.location.hash !== '#hablamos'
+          ) {
+            const observer = new IntersectionObserver(
+              (entries) => {
+                if (entries.some((entry) => entry.isIntersecting)) {
+                  observer.disconnect();
+                  initWidget();
+                }
+              },
+              { rootMargin: '300px 0px' },
+            );
+            observer.observe(container);
+          } else {
+            initWidget();
+          }
+
           window.addEventListener('message', (e) => {
             if (
               e.origin !== 'https://calendly.com' &&
@@ -339,13 +402,23 @@ const situations = [
               ).payload;
 
               if (eventName === 'calendly.page_height' && payload?.height) {
-                const h = Number(payload.height);
-                if (h > 400) {
+                const h = parseInt(String(payload.height), 10);
+                if (h > 350) {
                   const iframe = container.querySelector('iframe');
                   if (iframe) {
-                    iframe.style.height = `${h}px`;
-                    container.style.height = `${h}px`;
+                    iframe.style.setProperty('height', `${h}px`, 'important');
+                    iframe.style.setProperty(
+                      'min-height',
+                      `${h}px`,
+                      'important',
+                    );
                   }
+                  container.style.setProperty('height', `${h}px`, 'important');
+                  container.style.setProperty(
+                    'min-height',
+                    `${h}px`,
+                    'important',
+                  );
                 }
               }
             }
