@@ -536,6 +536,7 @@ a {
   touch-action: manipulation;
   padding: 0;
   margin: 0;
+  overflow: hidden;
 }
 
 .calendly-heading {
@@ -553,10 +554,11 @@ a {
   z-index: 10;
   width: 100%;
   min-width: 100%;
-  min-height: 600px;
+  min-height: 580px;
   background: transparent;
   pointer-events: auto;
   touch-action: manipulation;
+  overflow: hidden;
 }
 
 .calendly-embed-target iframe {
@@ -564,10 +566,12 @@ a {
   z-index: 10;
   width: 100% !important;
   min-width: 100% !important;
-  min-height: 600px;
+  min-height: 580px;
   border: 0 !important;
   display: block;
   background: transparent;
+  clip-path: inset(0 0 10px 0);
+  margin-bottom: -10px;
   pointer-events: auto !important;
   touch-action: manipulation !important;
 }
