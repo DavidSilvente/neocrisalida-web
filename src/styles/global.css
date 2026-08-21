@@ -532,19 +532,12 @@ a {
 .calendly-wrap {
   position: relative;
   z-index: 10;
-  max-width: 48rem;
+  max-width: 28rem;
   width: 100%;
-  border-radius: 1.25rem;
-  border: var(--nc-stroke) solid
-    color-mix(in oklab, var(--nc-ink) 10%, transparent);
-  background: #ffffff;
-  box-shadow:
-    0 4px 20px -4px rgba(29, 15, 60, 0.05),
-    0 1px 3px rgba(29, 15, 60, 0.03);
+  background: transparent;
   box-sizing: border-box;
   pointer-events: auto;
   touch-action: manipulation;
-  overflow: hidden;
   padding: 0;
   margin: 0;
 }
@@ -556,7 +549,7 @@ a {
   font-weight: 540;
   color: var(--nc-ink);
   margin-bottom: 1.25rem;
-  max-width: 48rem;
+  max-width: 28rem;
 }
 
 .calendly-embed-target {
@@ -565,7 +558,7 @@ a {
   width: 100%;
   min-width: 100%;
   min-height: 590px;
-  background: #ffffff;
+  background: transparent;
   pointer-events: auto;
   touch-action: manipulation;
 }
@@ -577,7 +570,7 @@ a {
   min-width: 100% !important;
   border: 0 !important;
   display: block;
-  background: #ffffff;
+  background: transparent;
   pointer-events: auto !important;
   touch-action: manipulation !important;
 }
