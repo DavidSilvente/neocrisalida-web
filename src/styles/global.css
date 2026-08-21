@@ -361,6 +361,7 @@ a {
   .stage-7 .shell > * {
     margin-left: clamp(0rem, 12vw, 12rem);
   }
+  .stage-7 .shell > .calendly-section,
   .stage-7 .shell > .calendly-wrap {
     margin-left: 0;
   }
@@ -520,26 +521,32 @@ a {
   }
 }
 
-.calendly-wrap {
+.calendly-section {
   position: relative;
   z-index: 10;
   margin-top: clamp(2.5rem, 5vw, 4rem);
   margin-bottom: clamp(2rem, 4vw, 3rem);
-  max-width: 64rem;
   width: 100%;
-  border-radius: 1.5rem;
+}
+
+.calendly-wrap {
+  position: relative;
+  z-index: 10;
+  max-width: 48rem;
+  width: 100%;
+  border-radius: 1.25rem;
   border: var(--nc-stroke) solid
-    color-mix(in oklab, var(--nc-line) 30%, transparent);
+    color-mix(in oklab, var(--nc-ink) 10%, transparent);
   background: #ffffff;
-  padding-top: clamp(1.25rem, 3vw, 2rem);
-  padding-inline: 0;
-  padding-bottom: 0;
   box-shadow:
-    0 4px 6px -1px rgba(22, 9, 43, 0.03),
-    0 16px 36px -8px rgba(22, 9, 43, 0.07);
+    0 4px 20px -4px rgba(29, 15, 60, 0.05),
+    0 1px 3px rgba(29, 15, 60, 0.03);
   box-sizing: border-box;
   pointer-events: auto;
   touch-action: manipulation;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
 }
 
 .calendly-heading {
@@ -548,8 +555,8 @@ a {
   font-variation-settings: 'opsz' 14;
   font-weight: 540;
   color: var(--nc-ink);
-  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+  max-width: 48rem;
 }
 
 .calendly-embed-target {
@@ -557,11 +564,10 @@ a {
   z-index: 10;
   width: 100%;
   min-width: 100%;
-  background: transparent;
+  min-height: 590px;
+  background: #ffffff;
   pointer-events: auto;
   touch-action: manipulation;
-  border-bottom-left-radius: 1.5rem;
-  border-bottom-right-radius: 1.5rem;
 }
 
 .calendly-embed-target iframe {
@@ -571,9 +577,7 @@ a {
   min-width: 100% !important;
   border: 0 !important;
   display: block;
-  background: transparent;
-  border-bottom-left-radius: 1.5rem;
-  border-bottom-right-radius: 1.5rem;
+  background: #ffffff;
   pointer-events: auto !important;
   touch-action: manipulation !important;
 }
