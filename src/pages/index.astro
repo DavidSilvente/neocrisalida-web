@@ -292,11 +292,14 @@ const situations = [
               <span>Da el primer paso</span>
             </a>
           </p>
-          <div class="calendly-wrap">
+          <div class="calendly-section">
             <h3 class="calendly-heading">
               O elige fecha y hora en el calendario:
             </h3>
-            <div id="calendly-inline-embed" class="calendly-embed-target"></div>
+            <div class="calendly-wrap">
+              <div id="calendly-inline-embed" class="calendly-embed-target">
+              </div>
+            </div>
           </div>
           <div class="hand-figure-flow">
             <Image
@@ -337,7 +340,7 @@ const situations = [
               ) {
                 container.innerHTML = '';
                 calendlyGlobal.initInlineWidget({
-                  url: 'https://calendly.com/berbelnajasjj/30min?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=16092b&primary_color=b0166f',
+                  url: 'https://calendly.com/berbelnajasjj/30min?hide_event_type_details=1&hide_landing_page_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=1d0f3c&primary_color=b0166f',
                   parentElement: container,
                   resize: true,
                 });
